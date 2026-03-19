@@ -1,0 +1,342 @@
+﻿PRODUCT REQUIREMENTS DOCUMENT
+Personal Portfolio Website — James Boutros
+Version 1.0  |  2026
+1. Product Overview
+This document defines the requirements for James Boutros's personal portfolio website. The site serves as a digital resume and project showcase targeted at university admissions contacts, recruiters, and professional connections. It must be visually distinctive, fast to load, and deployable on Vercel with a custom subdomain or personal domain.
+The site must communicate James's identity as an aspiring electrical engineer entering the University of Waterloo Honours Electrical Engineering program, with a background in software development, community involvement, and academic achievement.
+2. Goals and Non-Goals
+2.1 Goals
+Present James's education, experience, projects, skills, and accomplishments in a single polished web experience.
+Make a strong first impression on recruiters and university contacts within the first 5 seconds of landing on the page.
+Be fully responsive on mobile and desktop.
+Deploy for free on Vercel with a clean subdomain such as jamesboutros.vercel.app.
+Be easy to update as new projects, jobs, or achievements are added.
+Include working contact links for email, phone, and LinkedIn.
+2.2 Non-Goals
+No backend or database required. This is a static site.
+No user accounts, forms, or dynamic data beyond contact links.
+No blog or content management system in v1.
+No paid hosting or domain required for initial launch.
+3. Content Inventory
+All content below is confirmed and must appear on the site. This section is the single source of truth for the developer or AI tool building the site.
+3.1 Personal Information
+Field
+Value
+Full name
+James Boutros
+Tagline
+Aspiring Electrical Engineer | Energy Systems | Builder
+Bio
+I am an Egyptian-Canadian born and raised in Burlington, Ontario, driven by a deep desire to succeed and make my family proud. As an incoming Electrical Engineering student at the University of Waterloo, I bring a rare combination of software development experience and hands-on hardware knowledge. I am disciplined in everything I commit to, whether that is academics, lifting, or building projects from scratch. I love the challenge of learning new things and I approach every problem with focus and intent. Outside of engineering, I am passionate about soccer, basketball, and my faith as a Coptic Christian. I do not do things halfway.
+Location
+Burlington, Ontario, Canada
+Email
+jamescb155@gmail.com
+Phone
+289-300-1288
+LinkedIn
+linkedin.com/in/james-b-2682403b3/
+GitHub
+github.com/jcb1515
+Resume
+PDF file stored at /public/resume.pdf in the project. Link with Download Resume button.
+Photo
+Headshot stored at /public/images/james.jpg. PLACEHOLDER: use a dark grey circle with initials JB in red until the real photo is provided. Photo appears in the Hero and About sections.
+All other images
+Stored in /public/images/ with filenames matching the media table in Section 3.6b. James will supply real images and drop them into this folder. No code changes needed to swap fillers for real images.
+3.2 Education
+Institution
+Period
+Details
+University of Waterloo
+Starting Fall 2026
+Honours Electrical Engineering (incoming)
+Assumption Catholic Secondary School
+Graduated 2026
+OSSD — Burlington, Ontario
+3.3 Accomplishments
+Galois Waterloo Math Contest Award Winner
+Grade 8 Math Award Winner
+Honour Roll 2023
+Honour Roll 2024
+Grade 11 Advanced Functions Award Winner
+3.4 Work Experience
+Role
+Period
+Description
+App Developer — CEC / Apple (Co-op)
+06/2025 – 07/2025
+Developed user-friendly mobile applications using Swift. Conducted application testing, researched new technologies, and documented development processes for team reference.
+Peer Tutor
+2025 – 2026
+Tutored fellow students in Advanced Functions, Chemistry, and Physics.
+Pharmacy Assistant — East Waterdown Pharmacy
+07/2023 – 09/2023
+Managed inventory, assisted customers, supported pharmacy staff with medication preparation, and maintained confidentiality in sensitive patient situations.
+Camp Counsellor — ARSM
+07/2022 – 09/2022
+Supervised and led groups of children across camp activities. Enforced safety rules, acted as a role model, and demonstrated strong leadership.
+3.5 Projects
+Project
+Tech
+Description
+Personal Website
+Next.js, React, Framer Motion, Vercel
+This portfolio site, designed and built from scratch to showcase my engineering background, software projects, and hardware work. Features Apple-level scroll animations, a red, black and white design system, and a single-file content architecture for easy updates as I grow through my engineering career. No external link — this is the site itself.
+Microloop
+Swift, iOS, Xcode
+An iOS application developed during my co-op with CEC and Apple through the Develop the Future program. Built entirely in Swift, Microloop gave me hands-on experience in mobile UI design, application testing, and professional software development workflows in a real industry environment.
+JaboGPT
+Next.js, React, Gemini 2.5 Flash API, Vercel
+A full-featured AI chat application powered by Google Gemini 2.5 Flash. JaboGPT supports file and image uploads with AI-powered analysis, collapsible and searchable chat sidebar, chat pinning and renaming, and a fully secure server-side API key architecture. Deployed on Vercel with zero client-side API exposure. Live at: https://jabogpt.vercel.app
+TinkerCAD — Fire Alarm
+TinkerCAD, Arduino Uno, C++, MQ Gas Sensor, TMP Temperature Sensor
+A dual-sensor fire detection system simulated in TinkerCAD and programmed in C++. Reads analog voltage from an MQ-series gas sensor on A0 and a TMP temperature sensor on A1. When gas concentration exceeds a threshold of 250 analog units or temperature exceeds 70 degrees Celsius, the system triggers a 523Hz buzzer tone and activates the corresponding alert LED. Demonstrates analog sensor interfacing, threshold-based control logic, and multi-hazard detection on a single Arduino Uno.
+TinkerCAD — Two-Door Lock
+TinkerCAD, Arduino Uno, C++, Servo Motor, 4x4 Keypad, I2C LCD, Buzzer
+A PIN-based electronic door lock system built in TinkerCAD. Uses a 4x4 matrix keypad for input, a servo motor to physically actuate the lock mechanism between 50 and 110 degrees, an I2C LCD for real-time user feedback, and a buzzer for audio confirmation. The firmware implements a custom Password class with string comparison logic, append and reset methods, and operator overloading. Correct PIN triggers a single buzzer tone and servo unlock. Wrong PIN triggers a triple buzzer pattern and prompts retry. Demonstrates object-oriented C++, hardware interfacing, and real-world access control logic.
+TinkerCAD — Traffic Light
+TinkerCAD, Arduino Uno, C++, Interrupt-Driven I/O, LCD
+A pedestrian-controlled traffic light system simulated in TinkerCAD. Uses a hardware interrupt on digital pin 2 to detect a pedestrian button press via an ISR (Interrupt Service Routine), immediately flagging a state change without blocking the main loop. On button press, the system cycles through a full pedestrian walk sequence: vehicles stop, pedestrians walk for 5 seconds, the green pedestrian light blinks as a warning, then traffic resumes through yellow and back to green. An LCD displays real-time state messages. Demonstrates interrupt-driven programming, non-blocking control flow, and multi-output state machine design.
+TinkerCAD — Photoresistor
+TinkerCAD, Arduino Uno, C++, Analog Sensing, LCD
+An ambient light sensing system that reads analog voltage from a photoresistor on pin A0 and classifies light intensity into three zones. Values between 54 and 800 activate three red LEDs, 800 to 950 activates yellow LEDs, and 950 and above activates white LEDs. Each LED group is controlled through a reusable updateLEDs function. The LCD dynamically updates only when the light zone changes, avoiding unnecessary redraws. Demonstrates analog-to-digital conversion, threshold classification, grouped output control, and efficient display state management.
+3.6 Skills and Tools
+Category
+Skills
+Programming Languages
+Python, Swift, C++, HTML, CSS
+Frameworks and Libraries
+React, Next.js, p5.js
+Developer Tools
+Git, GitHub, Vercel, Xcode, TinkerCAD
+Databases
+Supabase (Postgres) — familiar from project work
+APIs and Services
+Gemini API, OpenAI Whisper API, Stripe
+Soft Skills
+Reliable, disciplined, strong work ethic, strategic decision making, cooperative, problem solving
+Certifications
+Babysitting Certified, First Aid and CPR Certified, ICT SHSM Certifications
+3.7 Resume
+A downloadable PDF of James's resume must be linked on the site. The resume file must be stored in the /public directory of the Next.js project as resume.pdf and linked via a prominent Download Resume button in the hero section and the contact section. The button must open the PDF in a new tab and also trigger a download.
+3.6b Media and Image Assets
+Every section of the site must include images. All images are stored in the /public/images/ directory organized by section. Filler placeholder images must be used during development. James will supply real images and specify placement before final deployment. The builder must implement every image slot as a real img or Next.js Image component pointing to the correct path, never skip image slots or use CSS backgrounds as substitutes.
+Section
+Image File Path
+Description
+Hero
+/public/images/hero-bg.jpg
+Full-width dark atmospheric background image or texture for the hero section. Filler: any dark abstract image.
+About — Headshot
+/public/images/james.jpg
+Professional or clean headshot of James. Circular crop with red ring border. Filler: dark grey circle with JB initials in red.
+About — Lifestyle
+/public/images/about-lifestyle.jpg
+Optional secondary image in the about section showing James in a natural setting, gym, or candid photo. Filler: placeholder rectangle.
+Experience — Apple Co-op
+/public/images/exp-apple.jpg
+Image related to the Apple co-op experience. Could be a workspace, Swift code, or Develop the Future program photo. Filler: placeholder.
+Experience — Pharmacy
+/public/images/exp-pharmacy.jpg
+Image related to pharmacy assistant role. Filler: placeholder.
+Experience — Camp
+/public/images/exp-camp.jpg
+Image related to camp counsellor role at ARSM. Filler: placeholder.
+Experience — Tutoring
+/public/images/exp-tutoring.jpg
+Image related to peer tutoring. Filler: placeholder.
+Project — Personal Website
+/public/images/proj-website.jpg
+Screenshot of the personal website itself. Filler: placeholder.
+Project — Microloop
+/public/images/proj-microloop.jpg
+Screenshot or mockup of the Microloop iOS app. Filler: placeholder.
+Project — JaboGPT
+/public/images/proj-jabogpt.jpg
+Screenshot of JaboGPT chat interface. Filler: placeholder.
+Project — Fire Alarm Circuit
+/public/images/proj-fire-alarm.png
+TinkerCAD screenshot of fire alarm circuit. Use Grade_12_Culm_Project_1-Fire_alarm.png when supplied.
+Project — Two-Door Lock Circuit
+/public/images/proj-door-lock.png
+TinkerCAD screenshot of two-door lock system. Use Gr_12_Culm_project_two-Door_lock_system.png when supplied.
+Project — Traffic Light Circuit
+/public/images/proj-traffic-light.png
+TinkerCAD screenshot of traffic light circuit. Use Traffic_Light_Culminating.png when supplied.
+Project — Photoresistor Circuit
+/public/images/proj-photoresistor.png
+TinkerCAD screenshot of photoresistor circuit. Use Photoresistor_culminating.png when supplied.
+Project — Fire Alarm Code
+/public/images/code-fire-alarm.png
+Screenshot of Arduino C++ code for fire alarm project.
+Project — Door Lock Code
+/public/images/code-door-lock.png
+Screenshot of Arduino C++ code for two-door lock project.
+Project — Traffic Light Code
+/public/images/code-traffic-light.png
+Screenshot of Arduino C++ code for traffic light project.
+Project — Photoresistor Code
+/public/images/code-photoresistor.png
+Screenshot of Arduino C++ code for photoresistor project.
+Extracurriculars — Robotics
+/public/images/extra-robotics.jpg
+Photo from Robotics Club. Filler: placeholder.
+Extracurriculars — Lifting
+/public/images/extra-lifting.jpg
+Photo related to weightlifting. Filler: placeholder.
+Extracurriculars — Soccer
+/public/images/extra-soccer.jpg
+Photo related to soccer or basketball. Filler: placeholder.
+3.6c Filler Image Instructions for Builder
+During development, every image slot must render a visible filler. Do not leave broken image tags or empty spaces. Use the following filler strategy:
+For photos of people: render a dark grey rounded rectangle with the text PHOTO PLACEHOLDER in red centered inside it.
+For circuit diagrams: render a dark grey rectangle with CIRCUIT IMAGE in red.
+For code screenshots: render a dark grey rectangle with CODE SCREENSHOT in red.
+For project screenshots: render a dark grey rectangle with PROJECT SCREENSHOT in red.
+All fillers must be the same aspect ratio as the intended final image so layout does not shift when real images are dropped in.
+When James supplies real images, he will name them exactly as specified in the file path column above and drop them into /public/images/. No code changes should be needed to swap fillers for real images.
+3.7b TinkerCAD Projects — Engineering Context
+These four TinkerCAD projects represent the foundational skills of electrical engineering: sensor interfacing, analog-to-digital conversion, actuator control, interrupt-driven programming, and real-time feedback systems. Each project was designed and coded independently as a Grade 12 culminating project, demonstrating the ability to bridge hardware and software before entering a university engineering program. These are not toy projects. They reflect genuine understanding of circuit design principles, C++ firmware development, and embedded systems logic that directly maps to what is taught in first and second year EE at Waterloo. They should be presented on the site with the same weight as the software projects.
+3.8 Extracurriculars
+Robotics Club — Grade 10 and 11
+Senior Reach — Grade 11
+ICT SHSM Program
+Weightlifting — 3 Years
+Chess Club
+160+ Volunteer Hours
+4. Site Structure and Pages
+The site uses Next.js App Router page-based routing. Each major section is a separate route. Navigation between tabs uses Framer Motion AnimatePresence with a directional slide transition. Contact information appears only in the top nav (icon buttons) and the footer (icon links). There is no dedicated contact page or section.
+Section
+Nav Label
+Content
+Top Navigation Bar
+Always visible
+Logo/initials JB on the left, nav links in the center, and contact icons on the right (email, phone, LinkedIn, GitHub) as clickable icon buttons. Sticks to top on scroll with a dark semi-transparent background.
+Hero
+Home
+Name, tagline, one-line bio, three CTA buttons (View Projects, Contact Me, Download Resume), animated red particle or grid background, bold text reveal animation on load. Optional: small circular photo of James in the hero alongside the text for immediate personal presence.
+About
+About
+Two-column layout: headshot (/public/images/james.jpg) with red ring border on one side, bio paragraph and traits on the other. Optional secondary lifestyle image (/public/images/about-lifestyle.jpg) below the bio. All images use fillers until real photos are supplied.
+Education
+Education
+UWaterloo (incoming) and Assumption cards with dates, accomplishments listed below
+Experience
+Experience
+Timeline or card layout. Each experience entry includes a small image or icon on the left (/public/images/exp-apple.jpg etc.) with role, employer, dates, and bullet points on the right. Images use fillers until real photos are supplied.
+Projects
+Projects
+Card grid split into two subsections: Software Projects (Personal Website, Microloop, JaboGPT) and Hardware and Circuit Projects (TinkerCAD: Fire Alarm, Two-Door Lock, Traffic Light, Photoresistor). Each card shows a project screenshot or circuit image at the top, project name, tech tags, and description below. TinkerCAD cards show both the circuit image and the code screenshot in a tabbed or stacked layout within the card.
+Skills
+Skills
+Visual skill tags or progress indicators grouped by category
+Extracurriculars
+Activities
+Clean list of activities and volunteer hours
+Contact
+Contact
+Full contact section with email, phone, LinkedIn, GitHub, and Download Resume button displayed as large clickable cards or buttons.
+Footer
+Always visible
+Sits below the contact section. Repeats email, phone, LinkedIn, and GitHub as icon links. Copyright line: James Boutros 2026. Dark background matching the nav.
+5. Design Requirements
+5.1 Visual Style
+Dark base theme: pure black or near-black background (#0a0a0a or #0d0d0d) with an extremely subtle texture overlay — either a faint grid of thin lines at 2-3% white opacity or a noise grain texture. Adds depth without distraction.
+Primary accent: deep crimson red (#cc0000). Used sparingly and precisely: active nav indicator, CTA button fills, section rule lines, scroll progress bar, timeline line, skill hover states. No red glows, no red box shadows, no red text shadows anywhere.
+White (#ffffff): used for primary headings and the hero name. Also used for the JB monogram intro and large faint watermark text at 2-3% opacity.
+Secondary surface: dark glass morphism cards (#111111 at 90% opacity), extremely thin border (1px #333333), subtle inner top highlight (1px #ffffff at 4% opacity). No harsh borders, no colored glows.
+Body text: #888888 at 14-15px with 1.8 line height. Section labels: 10px uppercase red with 4px letter spacing. Dates and tech tags: IBM Plex Mono 12px #555555.
+Bold typographic hierarchy using a distinctive display font for headings paired with a clean monospace or sans-serif for body text.
+Subtle background texture or animated particle/grid effect on the hero section.
+Cards and sections use a slightly lighter dark surface with thin border lines, not harsh white boxes.
+Professional enough to send to a recruiter, creative enough to stand out from a standard resume site.
+5.2 Typography
+Heading font: Bebas Neue or Oswald for bold impactful headings that match the red and black aesthetic.
+Body font: IBM Plex Mono or Rajdhani for a technical sharp feel.
+No Arial, Times New Roman, or soft rounded fonts on the live site.
+5.3 Animations — Apple-Level Quality
+Animations must feel exactly like Apple product pages: smooth, purposeful, physics-based, and tied to scroll position. Every interaction must have a response. Nothing is static. The benchmark is that the site feels alive without ever feeling gimmicky or overdone.
+Hero text: each word or letter in the name animates in independently with a staggered spring physics reveal on page load. Not a simple fade, a weighted natural motion like characters dropping into place.
+Hero background: animated geometric grid or particle field in deep red that subtly shifts and breathes. Reacts to mouse cursor position with a gentle parallax pull, exactly like Apple Vision Pro landing page behavior.
+Scroll-linked section reveals: every section animates based on scroll progress using Framer Motion useScroll and useTransform. Elements do not just fade in, they translate upward with spring easing tied directly to how fast the user scrolls.
+Sticky section pinning: key sections like Projects and Skills pin in place while inner content animates horizontally as the user scrolls, mimicking the Apple iPhone feature scroll where content evolves while the section stays fixed.
+Project cards: on hover, the card lifts with a realistic box shadow bloom, a red glow pulses outward from the border, and the tech tags shift color. The card reacts to the exact cursor position within it using a 3D tilt transform (rotateX and rotateY based on mouse coordinates within the card bounds).
+Hardware project cards: same 3D tilt and glow but with a slightly different accent treatment to visually distinguish them from software projects.
+Experience timeline: the vertical red line literally draws itself downward as the user scrolls into the section using an SVG stroke-dashoffset animation tied to scroll progress. Each entry fades and slides in as the line reaches it.
+Skills section: each skill pill animates in with a staggered spring pop, overshoots slightly and settles, exactly like iOS app icons bouncing into place. On hover each pill lights up with a red backglow.
+Nav bar: on scroll past the hero, the nav transitions from transparent to a dark frosted glass background with a red bottom border using a smooth opacity and blur transition. Active section link has an animated red underline that slides between links as the user scrolls.
+CTA buttons: at rest they have a slow pulsing red border animation. On hover the red fills in from left to right in a smooth sweep. On click there is a subtle scale press feedback.
+Photo: subtle floating animation at rest, a slow continuous up and down drift with a red ring that glows and dims on a loop.
+Scroll progress bar: 2px red line at the very top of the viewport that fills from left to right as the user scrolls the page.
+Page transitions: if any internal navigation exists, sections cross-fade with a directional slide using Framer Motion AnimatePresence.
+Cursor: custom cursor on desktop, a small red dot that follows the mouse with a spring lag and scales up slightly when hovering over interactive elements.
+All animations must use Framer Motion with spring physics, not linear or ease-in-out. Performance must stay above 90 Lighthouse score. Use will-change and GPU compositing properties where needed to keep animations smooth.
+5.4 Responsiveness
+Fully responsive on mobile, tablet, and desktop.
+Mobile nav collapses into a hamburger menu.
+Project cards stack to single column on mobile.
+Minimum tested width: 375px (iPhone SE).
+5.5 Performance
+Lighthouse performance score of 90 or above.
+No unnecessary JavaScript libraries.
+Images optimized via Next.js Image component.
+First contentful paint under 1.5 seconds on a standard connection.
+6. Technology Stack
+Layer
+Technology
+Notes
+Framework
+Next.js 14 (React)
+App Router, static export for fast hosting
+Styling
+Tailwind CSS or plain CSS modules
+No UI component library needed for a portfolio
+Fonts
+Google Fonts
+Loaded via next/font for performance
+Animations
+Framer Motion or CSS transitions
+Keep lightweight
+Deployment
+Vercel
+Free tier, CI/CD via GitHub
+Version Control
+GitHub
+Public repo recommended for recruiter visibility
+Domain
+jabogpt.vercel.app
+Live domain on Vercel free tier. No custom domain required.
+7. Deployment Requirements
+Deployed on Vercel free tier. No paid plan required.
+Connected to a GitHub repository for automatic deploys on push to main.
+Vercel project name set to jamesboutros or similar to get a clean subdomain.
+No environment variables required since the site is fully static with no backend.
+Site must be live and accessible within 5 minutes of pushing to GitHub.
+8. Content Management
+All site content must be stored in a single file at src/data/content.js (or content.ts if using TypeScript). This file is the only file that ever needs to be touched when adding new projects, jobs, skills, or achievements. The design, layout, and animation code must never need to be modified for a content update.
+8.1 Required Data File Structure
+src/data/content.js must export separate named arrays for each content type: projects, experience, education, skills, accomplishments, extracurriculars, and personal info.
+Each array entry must be a plain JavaScript object with clearly named fields such as name, role, company, date, description, bullets, tech, and link.
+The rest of the codebase must import from this file only. No content strings hardcoded anywhere else in the project.
+8.2 Updating Content with AI Tools
+Because all content lives in one file, updating the site with Cursor, Claude Code, or Claude.ai is trivial. Examples of valid update prompts:
+Add a new project called X, built with React and Python, with this description and this GitHub link.
+Add a new work experience entry for a summer internship at Y company from May to August 2027 with these three bullet points.
+Add TypeScript to my Programming Languages skills.
+Update my education to show I am now in second year at UWaterloo.
+After any AI tool makes the change, push to GitHub. Vercel redeploys automatically within 30 seconds. No other steps required.
+8.3 Instructions for the Builder
+Whoever builds this site, whether a developer, Cursor, or Claude Code, must structure the project this way from day one. Do not hardcode any of James's personal information, job history, projects, or skills directly into component files. Everything goes in src/data/content.js. This is non-negotiable and must be the first architectural decision made before any UI is written.
+8. Future Enhancements (v2)
+Add a blog or writing section for technical posts.
+Add GitHub activity widget showing recent commits.
+Add a downloadable PDF resume button linking to an auto-generated PDF version of the page.
+Add a custom domain once purchased.
+Add dark/light mode toggle.
+Expand projects section as new projects are completed at UWaterloo.
+Add extracurriculars section if desired in a future version. It has been intentionally excluded from v1.
+9. Instructions for AI Tools (Cursor / Claude Code)
+When handing this PRD to Cursor, Claude Code, or any AI coding assistant, use the following prompt to get the best result:
+Build a personal portfolio website for James Boutros using Next.js 14 with the App Router and Tailwind CSS. Color scheme is strictly black and red: pure black background (#0a0a0a), deep red accent (#cc0000), dark grey surfaces (#111111), white headings, light grey body text. Use Bebas Neue or Oswald for headings and IBM Plex Mono for body text. Use Framer Motion for all animations: animated red particle or geometric grid on the hero, bold staggered slide-up on section entry, text reveal on the hero name, red glow hover on project cards, red underline on nav links, animated experience timeline, staggered skill tag pop-in, and a red scroll progress bar at the top. Include a red pulsing CTA button in the hero that links to /public/resume.pdf with download attribute. The site is single-page with smooth scroll navigation and sections in this order: Hero, About, Education, Experience, Projects, Skills, Extracurriculars, Contact. Fully responsive down to 375px. Lighthouse score above 90. GitHub: github.com/jcb1515. In the Skills section, display skills grouped into labeled categories: Programming Languages, Frameworks and Libraries, Developer Tools, Databases, APIs and Services. Each category has a bold red label with skill tags displayed as dark pill badges beneath it. Contact info (email, phone, LinkedIn, GitHub) must appear in TWO places: (1) the top navigation bar as clickable icon buttons on the right side, and (2) the footer at the very bottom of the page as icon links alongside a copyright line. The sticky nav must have a dark semi-transparent background with a red bottom border on scroll. For the photo in the Hero and About sections, use /public/james.jpg. If the file does not exist, render a dark grey circular placeholder with the initials JB in red as a fallback. The About section must have a two-column layout on desktop: photo on one side, bio and traits on the other.
+Supply the full content from Section 3 of this document alongside the above prompt. The AI tool will handle all code generation. Your job is to review the output, request adjustments to colours, spacing, or layout, and push the final version to GitHub for Vercel to deploy.
