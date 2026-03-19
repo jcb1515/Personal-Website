@@ -10,7 +10,7 @@ export function Projects() {
   const softwareProjects = projects.filter(p => p.type === "software");
   const hardwareProjects = projects.filter(p => p.type === "hardware");
 
-  const ProjectCard = ({ project }: { project: any }) => (
+  const ProjectCard = ({ project }: { project: (typeof projects)[number] }) => (
     <motion.div
       variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
       className="group relative h-full flex flex-col bg-surface border border-surface-border rounded-sm overflow-hidden transition-all duration-300"
