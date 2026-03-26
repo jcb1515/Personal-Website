@@ -23,7 +23,10 @@ export function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
+  const [mounted, setMounted] = useState(false);
+
   useEffect(() => {
+    setMounted(true);
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
@@ -41,6 +44,8 @@ export function NavBar() {
       document.body.style.overflow = "unset";
     };
   }, [isOpen]);
+
+  if (!mounted) return null;
 
   return (
     <header
@@ -120,7 +125,7 @@ export function NavBar() {
               {navLinks.map((link) => {
                 const isActive = pathname === link.href;
                 return (
-                  <Link
+                  <a
                     key={link.name}
                     href={link.href}
                     onClick={() => setIsOpen(false)}
@@ -135,7 +140,7 @@ export function NavBar() {
                         <span className="absolute -right-8 top-1/2 -translate-y-1/2 w-3 h-3 bg-primary" />
                       )}
                     </span>
-                  </Link>
+                  </a>
                 );
               })}
             </nav>
