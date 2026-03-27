@@ -13,7 +13,7 @@ export function Projects() {
   const ProjectCard = ({ project }: { project: (typeof projects)[number] }) => (
     <motion.div
       variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
-      className="group relative h-full flex flex-col bg-surface border border-surface-border rounded-sm overflow-hidden transition-all duration-300"
+      className="group relative h-full flex flex-col bg-surface rounded-sm ring-1 ring-surface-border hover:ring-2 hover:ring-primary overflow-hidden transition-all duration-300"
     >
       <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500 z-0 pointer-events-none" />
       <div className="absolute -inset-1 rounded-sm bg-gradient-to-r from-primary to-primary opacity-0 group-hover:opacity-20 blur-md transition-opacity duration-500 z-0 pointer-events-none" />
@@ -25,7 +25,7 @@ export function Projects() {
            </div>
            
            <div className="absolute inset-4 z-10 flex items-center justify-center">
-             <Image src={project.image} alt={project.title} fill className="object-contain" unoptimized onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+             <Image src={project.image} alt={project.title} fill className={`${project.type === 'hardware' ? 'object-contain' : 'object-cover'} rounded-sm`} unoptimized onError={(e) => { e.currentTarget.style.display = 'none'; }} />
            </div>
 
            {project.schematicImage && (
@@ -37,7 +37,7 @@ export function Projects() {
                   <iframe src={`${project.schematicImage}#toolbar=0&view=FitH`} className="relative w-full h-full z-30 pointer-events-auto border border-primary/20 rounded-sm shadow-2xl bg-white" title={project.title + " Schematic"} />
                 ) : (
                   <div className="absolute inset-4 z-30 flex items-center justify-center">
-                    <Image src={project.schematicImage} alt={project.title + " Schematic"} fill className="object-contain" unoptimized onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+                    <Image src={project.schematicImage} alt={project.title + " Schematic"} fill className="object-cover rounded-sm" unoptimized onError={(e) => { e.currentTarget.style.display = 'none'; }} />
                   </div>
                 )}
               </div>
@@ -45,9 +45,26 @@ export function Projects() {
         </div>
 
         <div className="p-6 flex flex-col flex-1">
-          <h3 className="text-2xl font-heading text-white group-hover:text-primary transition-colors mb-3">{project.title}</h3>
+          <h3 className="text-2xl font-heading text-white group-hover:text-primary transition-colors mb-3">
+            {project.title}
+          </h3>
           <p className="text-muted text-sm font-body flex-1 mb-6 leading-relaxed">
-            {project.description}
+            {project.description.includes("https://jabogpt.vercel.app") ? (
+              <>
+                {project.description.split("https://jabogpt.vercel.app")[0]}
+                <a 
+                  href="https://jabogpt.vercel.app" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="underline decoration-primary hover:text-white transition-colors"
+                >
+                  https://jabogpt.vercel.app
+                </a>
+                {project.description.split("https://jabogpt.vercel.app")[1]}
+              </>
+            ) : (
+              project.description
+            )}
           </p>
           <div className="mt-auto flex flex-col gap-4">
             <ul className="flex flex-wrap gap-2 text-xs font-body text-surface-border">
@@ -127,14 +144,14 @@ export function Projects() {
                 <motion.div
                   key={i}
                   variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                  className="group bg-surface border border-surface-border rounded-sm overflow-hidden hover:border-primary/50 transition-all duration-300"
+                  className="group relative bg-surface rounded-sm ring-1 ring-surface-border hover:ring-2 hover:ring-primary overflow-hidden transition-all duration-300"
                 >
                   <div className="relative aspect-video w-full border-b-2 border-primary shadow-[0_0_20px_rgba(204,0,0,0.2)] bg-[#0a0a0a] overflow-hidden flex items-center justify-center">
                     <Image
                       src={feature.image}
                       alt={feature.title}
                       fill
-                      className="object-contain group-hover:scale-105 transition-transform duration-500"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
                       unoptimized
                       onError={(e) => { e.currentTarget.style.display = 'none'; }}
                     />
@@ -143,6 +160,7 @@ export function Projects() {
                     <h5 className="text-lg font-heading text-white mb-2 group-hover:text-primary transition-colors">{feature.title}</h5>
                     <p className="text-muted font-body text-xs leading-relaxed">{feature.description}</p>
                   </div>
+                  <div className="absolute inset-0 ring-1 ring-inset ring-surface-border group-hover:ring-2 group-hover:ring-primary transition-all duration-300 z-20 pointer-events-none rounded-[inherit]" />
                 </motion.div>
               ))}
             </div>
@@ -162,7 +180,7 @@ export function Projects() {
                 <motion.div
                   key={i}
                   variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                  className={`group bg-surface border border-surface-border rounded-sm overflow-hidden hover:border-primary/50 transition-all duration-300 ${i === microloop.codedFeatures.length - 1 && microloop.codedFeatures.length % 3 === 2 ? 'lg:col-start-2' : ''} ${i === microloop.codedFeatures.length - 1 && microloop.codedFeatures.length % 2 === 1 ? 'col-span-2 lg:col-span-1 max-w-sm mx-auto lg:max-w-none' : ''}`}
+                  className={`group relative bg-surface rounded-sm ring-1 ring-surface-border hover:ring-2 hover:ring-primary overflow-hidden transition-all duration-300 ${i === microloop.codedFeatures.length - 1 && microloop.codedFeatures.length % 3 === 2 ? 'lg:col-start-2' : ''} ${i === microloop.codedFeatures.length - 1 && microloop.codedFeatures.length % 2 === 1 ? 'col-span-2 lg:col-span-1 max-w-sm mx-auto lg:max-w-none' : ''}`}
                 >
                   <div className="relative aspect-[9/16] w-full border-b-2 border-primary shadow-[0_0_20px_rgba(204,0,0,0.2)] bg-black overflow-hidden">
                     <video
@@ -179,6 +197,7 @@ export function Projects() {
                     <h5 className="text-lg font-heading text-white mb-2 group-hover:text-primary transition-colors">{feature.title}</h5>
                     <p className="text-muted font-body text-xs leading-relaxed">{feature.description}</p>
                   </div>
+                  <div className="absolute inset-0 ring-1 ring-inset ring-surface-border group-hover:ring-2 group-hover:ring-primary transition-all duration-300 z-20 pointer-events-none rounded-[inherit]" />
                 </motion.div>
               ))}
             </div>

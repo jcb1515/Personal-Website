@@ -22,9 +22,8 @@ export function Experience() {
               transition={{ delay: 0.1, type: "spring", stiffness: 300, damping: 20 }}
               className="absolute w-4 h-4 bg-primary rounded-full -left-[8.5px] top-6 border-4 border-background"
             />
-            
-            <div className="p-8 bg-surface border border-surface-border rounded-sm hover:-translate-y-1 hover:shadow-[0_10px_30px_-15px_rgba(204,0,0,0.2)] transition-all duration-300 flex flex-col md:flex-row gap-6">
-              <div className="flex-1">
+            <div className="group relative p-8 bg-surface rounded-sm ring-1 ring-surface-border hover:ring-2 hover:ring-primary hover:-translate-y-1 hover:shadow-[0_10px_30px_-15px_rgba(204,0,0,0.2)] transition-all duration-300 flex flex-col md:flex-row gap-6">
+              <div className="relative flex-1 z-10">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
                   <div>
                     <h3 className="text-2xl font-heading text-white">{item.role}</h3>
@@ -38,7 +37,6 @@ export function Experience() {
                   {item.description}
                 </p>
               </div>
-
             </div>
           </motion.div>
         ))}

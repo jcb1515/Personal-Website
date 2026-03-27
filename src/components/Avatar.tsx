@@ -18,8 +18,8 @@ export function Avatar({ className, size = 200, src, glow = false, initials }: A
   return (
     <div 
       className={cn(
-        "relative rounded-full overflow-hidden bg-surface flex items-center justify-center border-4 shrink-0 transition-shadow duration-500",
-        glow ? "border-primary shadow-[0_0_40px_rgba(204,0,0,0.5)]" : "border-surface shadow-2xl",
+        "relative rounded-full overflow-hidden bg-surface flex items-center justify-center border-4 shrink-0 transition-all duration-500",
+        glow ? "border-primary shadow-[0_0_40px_rgba(204,0,0,0.5)]" : "border-surface shadow-2xl hover:border-primary",
         className
       )}
       style={{ width: size, height: size }}

@@ -37,16 +37,16 @@ export const accomplishments = [
 export const experience = [
   {
     role: "App Developer",
-    company: "CEC / Apple (Co-op)",
+    company: "Career Education Council / Apple (Co-op)",
     period: "06/2025 – 07/2025",
-    description: "Designed and developed highly-performant iOS applications using Swift and SwiftUI within Apple's Consumer Electronics Control (CEC) division. Architected complex UI components with a relentless focus on Apple's Human Interface Guidelines, ensuring fluid, physics-based animations and pixel-perfect layouts. Wrote comprehensive XCTest suites to guarantee code reliability. Proactively researched emerging mobile trends and created detailed technical documentation to streamline onboarding. Collaborated daily with cross-functional teams of senior engineers and designers to ship robust, consumer-facing features on rigorous deadlines.",
+    description: "Developed user-friendly mobile applications using Swift UI. Built and presented the Microloop productivity app to a panel of engineers. Conducted application testing to identify bugs and improve performance. Researched new technologies to incorporate into the development process, and documented development processes and updates for team reference.",
     image: "/images/exp-apple.jpg"
   },
   {
     role: "Peer Tutor",
     company: "High School",
     period: "2025 – 2026",
-    description: "Provided comprehensive 1-on-1 tutoring sessions in Advanced Functions, Grade 12 Chemistry, and Physics to over 15 high school students. Designed highly personalized curriculum plans and interactive practice materials tailored to each student's unique learning style. Successfully simplified complex scientific and mathematical concepts into digestible modules, fundamentally helping students elevate their average grades by over 15% and significantly boosting their academic confidence.",
+    description: "Provided comprehensive 1-on-1 tutoring sessions in Advanced Functions, Grade 12 Chemistry, and Physics to students both inside and outside of school. Designed highly personalized curriculum plans and interactive practice materials tailored to each student's unique learning style. Successfully simplified complex scientific and mathematical concepts into digestible modules, fundamentally helping students elevate their average grades by over 15% and significantly boosting their academic confidence.",
     image: "/images/exp-tutoring.jpg"
   },
   {
@@ -71,7 +71,7 @@ export const projects = [
     title: "Personal Website",
     tech: ["Next.js", "React", "Framer Motion", "Vercel"],
     description: "This portfolio site, designed and built from scratch to showcase my engineering background, software projects, and hardware work. Features Apple-level scroll animations, a red, black and white design system, and a single-file content architecture for easy updates.",
-    image: "/images/website%20preview%20picture.png"
+    image: "/images/recent%20web%20image.jpeg"
   },
   {
     type: "software",
@@ -112,7 +112,7 @@ export const projects = [
     type: "hardware",
     title: "TinkerCAD — Photoresistor",
     tech: ["TinkerCAD", "Arduino Uno", "C++", "Analog Sensing", "LCD"],
-    description: "An ambient light sensing system that reads analog voltage from a photoresistor and classifies light intensity into three zones, mapped to LEDs. Demonstrates analog-to-digital conversion and efficient display state management.",
+    description: "An ambient light sensing system that reads analog voltage from a photoresistor and classifies light intensity into three zones, mapped to LEDs. The system utilizes a potentiometer to control the contrast of the LCD display, which shows the current light level zone. Demonstrates analog-to-digital conversion and efficient display state management.",
     image: "/images/Photoresistor%20culminating.png",
     schematicImage: "/images/Photoresistor%20culminating.pdf",
     codePath: "/code/photoresistor_culminating1.ino"
@@ -155,18 +155,6 @@ export const skills = [
     ]
   },
   {
-    category: "Soft Skills",
-    summary: "Technical skills get the job done, but soft skills determine how well. These are the qualities I bring to every team and project.",
-    items: [
-      { name: "Reliable", description: "Consistently delivered on commitments during my Apple co-op, meeting every sprint deadline and shipping features on schedule. My peer tutoring students and their parents trusted me to show up prepared every single session." },
-      { name: "Disciplined", description: "Three years of rigorous weightlifting, maintaining honour roll academics, and building complex projects from scratch — all require the same core discipline. I do not cut corners or take shortcuts." },
-      { name: "Strong Work Ethic", description: "Logged 160+ volunteer hours while maintaining top grades, holding a co-op position, tutoring peers, and building personal projects. I consistently put in the work others are not willing to do." },
-      { name: "Strategic Decision Making", description: "From choosing the right architecture for JaboGPT's API security model to selecting optimal data structures in my C++ hardware projects, I approach every technical decision with careful analysis and long-term thinking." },
-      { name: "Cooperative", description: "Collaborated daily with senior engineers and designers at Apple during my co-op. Worked in team-based robotics competitions, group coding projects, and community service initiatives throughout high school." },
-      { name: "Problem Solving", description: "Debugged interrupt-driven hardware systems, architected secure API pipelines, and solved complex algorithmic challenges in math contests (Galois Award winner). I thrive on breaking down hard problems into solvable pieces." }
-    ]
-  },
-  {
     category: "Certifications",
     summary: "Industry-recognized credentials that validate my commitment to professional development and safety standards.",
     items: [
@@ -197,8 +185,8 @@ export const extracurriculars = [
 
 export const microloop = {
   title: "Microloop",
-  tech: ["Swift", "iOS", "Xcode", "SwiftUI", "UIKit"],
-  description: "An iOS application developed during my co-op with CEC and Apple through the Develop the Future program. Built entirely in Swift, Microloop gave me hands-on experience in mobile UI design, application testing, and professional software development workflows in a real industry environment.",
+  tech: ["Swift", "iOS", "Xcode", "SwiftUI"],
+  description: "MicroLoop is a productivity app built during the Career Education Council and Apple co-op program, designed to keep people consistent with the small things in life. The concept behind MicroLoop is that small consistent steps compound into massive impact over time. The app is easy to use and accessible to anyone, anywhere. Key features include goal setting with numbered step tracking, a goal breakdown feature that takes any major goal and splits it into manageable actionable steps, and a suite of tools designed to keep the user on track and guide them toward building lasting habits. Built entirely in Swift UI and presented to a panel of engineers at the conclusion of the program.",
   designedFeatures: [
     { title: "Schedule View", image: "/images/schedule-mc.jpeg", description: "A clean, calendar-driven interface for organizing daily micro-learning sessions and tracking upcoming goals." },
     { title: "Timer Interface", image: "/images/timer-mc.jpeg", description: "A focused countdown timer with visual progress indicators for timed study and habit-building sessions." },
@@ -207,8 +195,8 @@ export const microloop = {
   ],
   codedFeatures: [
     { title: "Home Page", video: "/images/Home%20Page.mov", description: "The main dashboard showing active goals, daily progress, and quick-access navigation to all app features." },
-    { title: "Adding Goals", video: "/images/Adding%20goals.mov", description: "Intuitive goal creation flow with category selection, scheduling options, and milestone configuration." },
-    { title: "Goal Breakdown", video: "/images/Goal%20Breakdown.mov", description: "Detailed drill-down view showing individual goal progress, completion history, and performance analytics." },
+    { title: "Adding Goals", video: "/images/Adding%20goals.mov", description: "A clean base feature that lets users add and number their goals, nothing more." },
+    { title: "Goal Breakdown", video: "/images/Goal%20Breakdown.mov", description: "Breaks a major goal down into smaller actionable steps automatically." },
     { title: "Progress Bar", video: "/images/progress%20bar.mov", description: "Animated progress tracking with visual feedback that updates in real-time as users complete micro-tasks." },
     { title: "Streak Tracking", video: "/images/streak.mov", description: "Gamified streak system that motivates users to maintain daily consistency with visual streak counters." }
   ]
