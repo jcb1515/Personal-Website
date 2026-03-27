@@ -67,7 +67,7 @@ export function Education() {
                       >
                         <div className="pt-6 mt-4 border-t border-surface-border space-y-4 text-sm font-body text-muted leading-relaxed">
                           <p>
-                            James maintained a 98% average in Grade 12 with a 4.0 unweighted GPA as a dedicated AP student for all four years.
+                            I maintained a 98% average in Grade 12 with a 4.0 unweighted GPA as a dedicated AP student for all four years.
                           </p>
                           <p>
                             AP courses completed include Advanced Functions, Calculus AB, Physics 1, Chemistry, and English. Currently self-studying AP Calculus BC and AP Physics C Electricity and Magnetism independently. Will be writing the AP Calculus AB exam in May 2026.
@@ -76,7 +76,7 @@ export function Education() {
                             Clubs and activities include Model UN with participation in an in-house conference, VEX Robotics, DECA with a regional competition appearance at Brock University, Senior Reach, and Chess Club. Also served as a peer tutor for Mathematics inside of school.
                           </p>
                           <p>
-                            Academic awards include the Grade 11 AP Advanced Functions Award and the top score at his school on the University of Waterloo Galois Math Contest.
+                            Academic awards include the Grade 11 AP Advanced Functions Award and the top score at my school on the University of Waterloo Galois Math Contest.
                           </p>
                         </div>
                       </motion.div>

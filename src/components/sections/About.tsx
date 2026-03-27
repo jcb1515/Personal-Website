@@ -54,13 +54,13 @@ export function About() {
         >
           <div className="relative z-10 space-y-6">
             <p>
-              James spends 6 to 8 hours a week weightlifting, both alone and with friends, and has been tracking his macros for two of his three years of training. He is a lifelong Toronto Raptors fan having watched them since age five, and has followed FC Barcelona closely for the past five years.
+              I spend 6 to 8 hours a week weightlifting, both alone and with friends, and have been tracking my macros for two of my three years of training. I am a lifelong Toronto Raptors fan having watched them since age five, and have followed FC Barcelona closely for the past five years.
             </p>
             <p>
-              His Coptic Christian faith is a central part of his life, attending church two to three times a week and being actively involved in his church community, with plans to continue that involvement at Waterloo. He is passionate about coding in his spare time and finding unique applications of AI. 
+              My Coptic Christian faith is a central part of my life, attending church two to three times a week and being actively involved in my church community, with plans to continue that involvement at Waterloo. I am passionate about coding in my spare time and finding unique applications of AI. 
             </p>
             <p>
-              He loves to travel and has visited the USA, Dominican Republic, Egypt, and Jamaica.
+              I love to travel and have visited the USA, Dominican Republic, Egypt, and Jamaica.
             </p>
           </div>
         </motion.div>
