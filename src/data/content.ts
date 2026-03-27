@@ -194,10 +194,10 @@ export const microloop = {
     { title: "Reflection Survey", image: "/images/reflection%20survey-mc.jpeg", description: "End-of-session reflection prompts that help users evaluate their progress and adjust their learning strategy." }
   ],
   codedFeatures: [
-    { title: "Home Page", video: "/images/Home%20Page.mov", description: "The main dashboard showing active goals, daily progress, and quick-access navigation to all app features." },
-    { title: "Adding Goals", video: "/images/Adding%20goals.mov", description: "A clean base feature that lets users add and number their goals, nothing more." },
-    { title: "Goal Breakdown", video: "/images/Goal%20Breakdown.mov", description: "Breaks a major goal down into smaller actionable steps automatically." },
-    { title: "Progress Bar", video: "/images/progress%20bar.mov", description: "Animated progress tracking with visual feedback that updates in real-time as users complete micro-tasks." },
-    { title: "Streak Tracking", video: "/images/streak.mov", description: "Gamified streak system that motivates users to maintain daily consistency with visual streak counters." }
+    { title: "Home Page", video: "/images/Home%20Page.mov", description: "The main dashboard showing active goals, daily progress, and quick-access navigation to all app features.", videoOffset: "55.8% center" },
+    { title: "Adding Goals", video: "/images/Adding%20goals.mov", description: "A clean base feature that lets users add and number their goals, nothing more.", videoOffset: "55.8% center" },
+    { title: "Goal Breakdown", video: "/images/Goal%20Breakdown.mov", description: "Breaks a major goal down into smaller actionable steps automatically.", videoOffset: "55.8% center" },
+    { title: "Progress Bar", video: "/images/progress%20bar.mov", description: "Animated progress tracking with visual feedback that updates in real-time as users complete micro-tasks.", videoOffset: "55.5% center" },
+    { title: "Streak Tracking", video: "/images/streak.mov", description: "Gamified streak system that motivates users to maintain daily consistency with visual streak counters.", videoOffset: "50% center" }
   ]
 };

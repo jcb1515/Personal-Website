@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html><body>
+<script>
+const videos = [
+  "Home Page.mov",
+  "Adding goals.mov",
+  "Goal Breakdown.mov",
+  "progress bar.mov",
+  "streak.mov"
+];
+async function process() {
+  for (let file of videos) {
+    await new Promise(resolve => {
+      let v = document.createElement("video");
+      v.src = "/images/" + encodeURI(file);
+      v.crossOrigin = "anonymous";
+      v.muted = true;
+      v.onloadeddata = () => {
+        v.currentTime = 2; // Seek to clearly visible UI
+      };
+      v.onseeked = () => {
+        let canvas = document.createElement("canvas");
+        canvas.width = v.videoWidth;
+        canvas.height = v.videoHeight;
+        let ctx = canvas.getContext("2d");
+        ctx.drawImage(v, 0, 0);
+        let data = ctx.getImageData(0,0,canvas.width,canvas.height).data;
+        
+        let minX = canvas.width, maxX = 0;
+        
+        // Thresholding at < 150 strictly ignores soft grey drop shadows (which shift the mass off-center)
+        // and isolates the dark device chassis / heavy UI content natively.
+        let startY = Math.floor(canvas.height * 0.3);
+        let endY = Math.floor(canvas.height * 0.7);
+        for (let y = startY; y < endY; y += 4) {
+          for (let x = 0; x < canvas.width; x += 1) {
+            let i = (y*canvas.width + x)*4;
+            let avg = (data[i] + data[i+1] + data[i+2]) / 3;
+            if (avg < 150) { 
+              if (x < minX) minX = x;
+              if (x > maxX) maxX = x;
+            }
+          }
+        }
+        
+        let phoneCenter = (minX + maxX) / 2;
+        let contH = canvas.height;
+        let contW = contH * (9/16);
+        let ratio = (phoneCenter - contW/2) / (canvas.width - contW);
+        let pct = Math.max(0, Math.min(100, Math.round(ratio * 1000) / 10)); // 1 decimal precision
+        
+        let msg = document.createElement("div");
+        msg.innerText = `${file} => ${pct}% center`;
+        msg.className = "result";
+        document.body.appendChild(msg);
+        resolve();
+      };
+      v.onerror = () => {
+        let msg = document.createElement("div");
+        msg.innerText = file + " => ERROR";
+        msg.className = "result";
+        document.body.appendChild(msg);
+        resolve();
+      };
+    });
+  }
+}
+process();
+</script>
+</body></html>

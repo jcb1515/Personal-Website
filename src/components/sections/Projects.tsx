@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { Section } from "@/components/Section";
 import { projects, microloop } from "@/data/content";
 import Image from "next/image";
@@ -10,39 +11,39 @@ export function Projects() {
   const softwareProjects = projects.filter(p => p.type === "software");
   const hardwareProjects = projects.filter(p => p.type === "hardware");
 
-  const ProjectCard = ({ project }: { project: (typeof projects)[number] }) => (
-    <motion.div
-      variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
-      className="group relative h-full flex flex-col bg-surface rounded-sm ring-1 ring-surface-border hover:ring-2 hover:ring-primary overflow-hidden transition-all duration-300"
-    >
-      <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500 z-0 pointer-events-none" />
-      <div className="absolute -inset-1 rounded-sm bg-gradient-to-r from-primary to-primary opacity-0 group-hover:opacity-20 blur-md transition-opacity duration-500 z-0 pointer-events-none" />
-      
-      <div className="relative z-10 flex flex-col h-full bg-surface">
-        <div className="relative w-full border-b-2 border-primary shadow-[0_0_30px_rgba(204,0,0,0.3)] overflow-hidden flex items-center justify-center aspect-video bg-[#0a0a0a]">
-           <div className="absolute inset-0 flex items-center justify-center text-primary font-heading tracking-widest bg-background z-0">
-             {project.type === 'hardware' ? 'CIRCUIT IMAGE' : 'PROJECT SCREENSHOT'}
-           </div>
-           
-           <div className="absolute inset-4 z-10 flex items-center justify-center">
-             <Image src={project.image} alt={project.title} fill className={`${project.type === 'hardware' ? 'object-contain' : 'object-cover'} rounded-sm`} unoptimized onError={(e) => { e.currentTarget.style.display = 'none'; }} />
-           </div>
+  const ProjectCard = ({ project }: { project: (typeof projects)[number] }) => {
+    const [showSchematic, setShowSchematic] = useState(false);
 
-           {project.schematicImage && (
-              <div className="absolute inset-0 bg-background/95 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 flex items-center justify-center p-4">
-                <div className="absolute inset-0 flex items-center justify-center text-primary font-heading tracking-widest z-0">
-                  SCHEMATIC IMAGE
+    return (
+      <motion.div
+        variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
+        className="group relative h-full flex flex-col bg-surface rounded-sm ring-1 ring-surface-border hover:ring-2 hover:ring-primary overflow-hidden transition-all duration-300"
+      >
+        <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500 z-0 pointer-events-none" />
+        <div className="absolute -inset-1 rounded-sm bg-gradient-to-r from-primary to-primary opacity-0 group-hover:opacity-20 blur-md transition-opacity duration-500 z-0 pointer-events-none" />
+        
+        <div className="relative z-10 flex flex-col h-full bg-surface">
+          <div className="relative w-full border-b-2 border-primary shadow-[0_0_30px_rgba(204,0,0,0.3)] overflow-hidden flex items-center justify-center aspect-video bg-[#0a0a0a]">
+             <div className="absolute inset-0 flex items-center justify-center text-primary font-heading tracking-widest bg-background z-0">
+               {project.type === 'hardware' ? (showSchematic ? 'SCHEMATIC IMAGE' : 'CIRCUIT IMAGE') : 'PROJECT SCREENSHOT'}
+             </div>
+             
+             <div className={`absolute inset-4 z-10 flex items-center justify-center transition-all duration-700 ease-in-out ${showSchematic ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 scale-100'}`}>
+               <Image src={project.image} alt={project.title} fill className={`${project.type === 'hardware' ? 'object-contain' : 'object-cover'} rounded-sm`} unoptimized onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+             </div>
+
+             {project.schematicImage && (
+                <div className={`absolute inset-0 bg-white z-20 flex items-center justify-center p-4 transition-all duration-700 ease-in-out ${showSchematic ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-105 pointer-events-none'}`}>
+                  {project.schematicImage.endsWith('.pdf') ? (
+                    <iframe src={`${project.schematicImage}#toolbar=0&view=FitH`} className="relative w-full h-full z-30 pointer-events-auto border border-primary/20 rounded-sm shadow-2xl bg-white" title={project.title + " Schematic"} />
+                  ) : (
+                    <div className="absolute inset-4 z-30 flex items-center justify-center bg-[#0a0a0a] rounded-sm">
+                      <Image src={project.schematicImage} alt={project.title + " Schematic"} fill className="object-contain rounded-sm" unoptimized onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+                    </div>
+                  )}
                 </div>
-                {project.schematicImage.endsWith('.pdf') ? (
-                  <iframe src={`${project.schematicImage}#toolbar=0&view=FitH`} className="relative w-full h-full z-30 pointer-events-auto border border-primary/20 rounded-sm shadow-2xl bg-white" title={project.title + " Schematic"} />
-                ) : (
-                  <div className="absolute inset-4 z-30 flex items-center justify-center">
-                    <Image src={project.schematicImage} alt={project.title + " Schematic"} fill className="object-cover rounded-sm" unoptimized onError={(e) => { e.currentTarget.style.display = 'none'; }} />
-                  </div>
-                )}
-              </div>
-           )}
-        </div>
+             )}
+          </div>
 
         <div className="p-6 flex flex-col flex-1">
           <h3 className="text-2xl font-heading text-white group-hover:text-primary transition-colors mb-3">
@@ -74,11 +75,19 @@ export function Projects() {
                 </li>
               ))}
             </ul>
+            {project.schematicImage && (
+              <button
+                onClick={() => setShowSchematic(!showSchematic)}
+                className="mt-2 text-center py-3 bg-surface border border-primary text-primary hover:bg-primary hover:text-white transition-colors duration-300 font-heading tracking-widest flex items-center justify-center gap-2 rounded-sm"
+              >
+                {showSchematic ? "VIEW CIRCUIT DIAGRAM" : "VIEW SCHEMATIC"}
+              </button>
+            )}
             {project.codePath && (
               <a
                 href={project.codePath}
                 download
-                className="mt-2 text-center py-3 bg-primary/10 border border-primary text-primary hover:bg-primary hover:text-white transition-colors duration-300 font-heading tracking-widest flex items-center justify-center gap-2"
+                className="mt-2 text-center py-3 bg-primary/10 border border-primary text-primary hover:bg-primary hover:text-white transition-colors duration-300 font-heading tracking-widest flex items-center justify-center gap-2 rounded-sm"
               >
                 <FileText size={16} /> DOWNLOAD CODE ({project.codePath.split('.').pop()?.toUpperCase()})
               </a>
@@ -88,6 +97,7 @@ export function Projects() {
       </div>
     </motion.div>
   );
+};
 
   return (
     <Section id="projects" title="Projects">
@@ -186,6 +196,7 @@ export function Projects() {
                     <video
                       src={feature.video}
                       className="w-full h-full object-cover"
+                      style={{ objectPosition: (feature as any).videoOffset || '60% center' }}
                       autoPlay
                       loop
                       muted
