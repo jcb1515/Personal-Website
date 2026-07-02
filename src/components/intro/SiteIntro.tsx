@@ -57,16 +57,11 @@ export function SiteIntro(): ReactElement | null {
         >
           <IntroScene reducedMotion={reducedMotion} />
           <div className="intro-interface" aria-live="polite">
-            <motion.div
-              className="intro-lockup"
-              initial={reducedMotion ? false : { opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.1, duration: 0.7 }}
-            >
+            <div className="intro-lockup">
               <span>JB / Signal established</span>
               <strong>James Boutros</strong>
               <p>Electrical engineering · embedded systems · software</p>
-            </motion.div>
+            </div>
             <div className="intro-status">
               <span>Initialising portfolio environment</span>
               <div className="intro-progress">

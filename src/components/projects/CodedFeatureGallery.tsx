@@ -1,6 +1,7 @@
 import type { ReactElement } from "react";
 import { microloop } from "@/data/content";
 import { InteractiveSurface } from "@/components/InteractiveSurface";
+import { ThemedVideoPlayer } from "@/components/projects/ThemedVideoPlayer";
 
 export function CodedFeatureGallery(): ReactElement {
   return (
@@ -20,24 +21,13 @@ export function CodedFeatureGallery(): ReactElement {
             className={`bg-[var(--surface)] xl:col-span-2 ${index === 3 ? "xl:col-start-2" : ""} ${index === 4 ? "xl:col-start-4" : ""}`}
           >
             <div className="relative flex aspect-[239/280] items-center justify-center overflow-hidden bg-black">
-              <video
-                controls
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="metadata"
+              <ThemedVideoPlayer
+                ariaLabel={`${feature.title} MicroLoop demonstration`}
+                index={index}
                 poster={microloop.designedFeatures[index % microloop.designedFeatures.length].image}
-                className="h-full w-full object-contain"
-                style={{ objectPosition: feature.videoOffset }}
-                aria-label={`${feature.title} MicroLoop demonstration`}
-              >
-                <source src={feature.video} type="video/mp4" />
-                Your browser does not support embedded video.
-              </video>
-              <span className="pointer-events-none absolute left-3 top-3 bg-black/85 px-2 py-1 text-[0.6rem] uppercase text-white">
-                0{index + 1} / Video
-              </span>
+                source={feature.video}
+                videoOffset={feature.videoOffset}
+              />
             </div>
             <div className="min-h-40 p-5">
               <h3 className="text-xl">{feature.title}</h3>

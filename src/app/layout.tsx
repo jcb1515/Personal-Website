@@ -28,6 +28,10 @@ export const metadata: Metadata = {
   title: "James Boutros | Electrical Engineering Portfolio",
   description:
     "Electrical engineering, embedded systems, and software projects by James Boutros.",
+  icons: {
+    icon: "/jb-favicon.svg",
+    shortcut: "/jb-favicon.svg",
+  },
 };
 
 interface RootLayoutProps {
