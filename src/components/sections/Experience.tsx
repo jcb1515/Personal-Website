@@ -1,44 +1,43 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import type { ReactElement } from "react";
 import { Section } from "@/components/Section";
 import { experience } from "@/data/content";
+import { createEntryTransition } from "@/lib/motion";
 
-export function Experience() {
+export function Experience(): ReactElement {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
-    <Section id="experience" title="Experience">
-      <div className="relative border-l border-surface-border ml-3 md:ml-0 md:pl-0">
+    <Section id="experience" eyebrow="Field log / 03" title="Experience in real systems">
+      <div className="border-t border-[var(--line)]">
         {experience.map((item, index) => (
-          <motion.div 
-            key={index}
-            variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }}
-            className="mb-12 relative pl-8 md:pl-12"
+          <motion.article
+            key={`${item.role}-${item.company}`}
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={createEntryTransition(index * 0.06)}
+            className="content-row grid gap-6 border-b border-[var(--line)] py-9 md:grid-cols-[5rem_1fr_1.4fr] md:py-12"
           >
-            {/* Timeline Dot */}
-            <motion.div 
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1, type: "spring", stiffness: 300, damping: 20 }}
-              className="absolute w-4 h-4 bg-primary rounded-full -left-[8.5px] top-6 border-4 border-background"
-            />
-            <div className="group relative p-8 bg-surface rounded-sm ring-1 ring-surface-border hover:ring-2 hover:ring-primary hover:-translate-y-1 hover:shadow-[0_10px_30px_-15px_rgba(204,0,0,0.2)] transition-all duration-300 flex flex-col md:flex-row gap-6">
-              <div className="relative flex-1 z-10">
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
-                  <div>
-                    <h3 className="text-2xl font-heading text-white">{item.role}</h3>
-                    <h4 className="text-lg font-body text-primary">{item.company}</h4>
-                  </div>
-                  <span className="inline-block px-3 py-1 bg-surface-light text-muted font-body text-sm border border-surface-border whitespace-nowrap self-start md:self-auto">
-                    {item.period}
-                  </span>
-                </div>
-                <p className="text-muted leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
+            <div className="technical-label">{String(index + 1).padStart(2, "0")}</div>
+            <div>
+              <h2 className="text-3xl leading-tight">{item.role}</h2>
+              <p className="mt-3 text-xs uppercase leading-5 text-[var(--signal-bright)]">
+                {item.company}
+              </p>
+              <p className="mt-3 text-xs text-[var(--quiet)]">{item.period}</p>
             </div>
-          </motion.div>
+            <ul className="max-w-3xl space-y-3 text-sm leading-7 text-[var(--muted)]">
+              {item.highlights.map((highlight) => (
+                <li key={highlight} className="grid grid-cols-[0.75rem_1fr] gap-3">
+                  <span className="mt-[0.72rem] h-1 w-1 bg-[var(--signal-bright)]" />
+                  <span>{highlight}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.article>
         ))}
       </div>
     </Section>

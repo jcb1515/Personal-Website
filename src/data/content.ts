@@ -1,6 +1,6 @@
 export const personalInfo = {
   name: "James Boutros",
-  tagline: "Aspiring Electrical Engineer | Builder",
+  tagline: "Incoming Waterloo ECE. Hardware + software.",
   bio: [
     "I am an Egyptian-Canadian born and raised in Burlington, Ontario, driven by a deep desire to succeed and make my family proud. As an incoming Electrical Engineering student at the University of Waterloo, I bring a rare combination of software development experience and hands-on hardware knowledge.",
     "I am disciplined in everything I commit to, whether that is academics, lifting, or building projects from scratch. I love the challenge of learning new things and I approach every problem with focus and intent. Outside of engineering, I am passionate about soccer, basketball, and my faith as a Coptic Christian. I do not do things halfway."
@@ -11,13 +11,14 @@ export const personalInfo = {
   linkedin: "linkedin.com/in/james-b-2682403b3/",
   github: "github.com/jcb1515",
   resumePath: "/api/download-resume",
+  resumeFilename: "James_Boutros_Resume_2026.pdf",
 };
 
 export const education = [
   {
     institution: "University of Waterloo",
-    period: "Starting Fall 2026",
-    details: "Honours Electrical Engineering (incoming)",
+    period: "Starting September 2026",
+    details: "BASc, Electrical and Computer Engineering",
   },
   {
     institution: "Assumption Catholic Secondary School",
@@ -27,40 +28,60 @@ export const education = [
 ];
 
 export const accomplishments = [
-  "Galois Waterloo Math Contest Award Winner",
-  "Grade 8 Math Award Winner",
-  "Honour Roll 2023",
-  "Honour Roll 2024",
-  "Grade 11 Advanced Functions Award Winner"
+  "AP Calculus AB Exam - Score of 5",
+  "Galois Waterloo Math Contest - Top Score at School",
+  "Grade 11 AP Advanced Functions Course Award",
+  "Honor Roll - All 4 Years (2023-2026)",
 ];
 
 export const experience = [
   {
     role: "App Developer",
     company: "Career Education Council / Apple (Co-op)",
-    period: "06/2025 – 07/2025",
+    period: "June 2025 - July 2025",
     description: "Developed user-friendly mobile applications using Swift UI. Built and presented the Microloop productivity app to a panel of engineers. Conducted application testing to identify bugs and improve performance. Researched new technologies to incorporate into the development process, and documented development processes and updates for team reference.",
+    highlights: [
+      "Designed and developed MicroLoop, a complete SwiftUI productivity app with goal tracking, AI-assisted breakdown, streaks, notifications, and reflection flows.",
+      "Independently implemented the dashboard, goal entry flow, animated progress system, and streak counter.",
+      "Presented the completed application to a panel of Apple engineers.",
+      "Researched emerging iOS frameworks and maintained development documentation for knowledge transfer.",
+    ],
     image: "/images/exp-apple.jpg"
   },
   {
     role: "Peer Tutor",
     company: "High School",
-    period: "2025 – 2026",
+    period: "2025 - 2026",
     description: "Provided comprehensive 1-on-1 tutoring sessions in Advanced Functions, Grade 12 Chemistry, and Physics to students both inside and outside of school. Designed highly personalized curriculum plans and interactive practice materials tailored to each student's unique learning style. Successfully simplified complex scientific and mathematical concepts into digestible modules, fundamentally helping students elevate their average grades by over 15% and significantly boosting their academic confidence.",
+    highlights: [
+      "Delivered one-on-one tutoring in Advanced Functions, Grade 12 Chemistry, and Physics.",
+      "Designed personalized curriculum plans and practice materials for each student.",
+      "Helped students raise average grades by more than 15 percent through clearer explanations of complex concepts.",
+    ],
     image: "/images/exp-tutoring.jpg"
   },
   {
     role: "Pharmacy Assistant",
     company: "East Waterdown Pharmacy",
-    period: "07/2023 – 09/2023",
+    period: "July 2023 - September 2023",
     description: "Managed daily operations in a high-volume, fast-paced retail pharmacy environment. Conducted precise inventory audits, managed stock rotation, and expertly assisted pharmacists with high-accuracy medication preparation and packaging. Delivered exceptional, empathetic customer service while handling sensitive inquiries. Strictly adhered to all provincial health regulations, maintaining absolute patient confidentiality and data security at all times.",
+    highlights: [
+      "Maintained inventory and tracked medication expiration dates for safety and regulatory compliance.",
+      "Assisted pharmacists with prescription preparation, order fulfillment, and counter organization.",
+      "Handled sensitive patient interactions with professionalism, empathy, and strict confidentiality.",
+    ],
     image: "/images/exp-pharmacy.jpg"
   },
   {
     role: "Camp Counsellor",
     company: "ARSM",
-    period: "07/2022 – 09/2022",
+    period: "July 2022 - September 2022",
     description: "Directed dynamic daily schedules and engaging developmental activities for diverse groups of up to 20 children ages 6-12. Proactively planned and executed sports, arts, and educational modules. Acted as a vital positive role model, utilizing advanced conflict resolution and empathetic communication to foster a highly inclusive, safe, and supportive recreational environment.",
+    highlights: [
+      "Supervised children across varied ages and developmental levels while enforcing safety protocols.",
+      "Led structured group activities and responded promptly to incidents.",
+      "Modelled the program's values through consistent communication and conflict resolution.",
+    ],
     image: "/images/exp-camp.jpg"
   }
 ];
@@ -118,6 +139,8 @@ export const projects = [
     codePath: "/code/photoresistor_culminating1.ino"
   }
 ];
+
+export type Project = (typeof projects)[number];
 
 export const skills = [
   {
@@ -194,10 +217,10 @@ export const microloop = {
     { title: "Reflection Survey", image: "/images/reflection%20survey-mc.jpeg", description: "End-of-session reflection prompts that help users evaluate their progress and adjust their learning strategy." }
   ],
   codedFeatures: [
-    { title: "Home Page", video: "/images/Home%20Page.mov", description: "The main dashboard showing active goals, daily progress, and quick-access navigation to all app features.", videoOffset: "55.8% center" },
-    { title: "Adding Goals", video: "/images/Adding%20goals.mov", description: "A clean base feature that lets users add and number their goals, nothing more.", videoOffset: "55.8% center" },
-    { title: "Goal Breakdown", video: "/images/Goal%20Breakdown.mov", description: "Breaks a major goal down into smaller actionable steps automatically.", videoOffset: "55.8% center" },
-    { title: "Progress Bar", video: "/images/progress%20bar.mov", description: "Animated progress tracking with visual feedback that updates in real-time as users complete micro-tasks.", videoOffset: "55.5% center" },
-    { title: "Streak Tracking", video: "/images/streak.mov", description: "Gamified streak system that motivates users to maintain daily consistency with visual streak counters.", videoOffset: "50% center" }
+    { title: "Home Page", video: "/images/Home%20Page.mp4", description: "The main dashboard showing active goals, daily progress, and quick-access navigation to all app features.", videoOffset: "55.8% center" },
+    { title: "Adding Goals", video: "/images/Adding%20goals.mp4", description: "A clean base feature that lets users add and number their goals, nothing more.", videoOffset: "55.8% center" },
+    { title: "Goal Breakdown", video: "/images/Goal%20Breakdown.mp4", description: "Breaks a major goal down into smaller actionable steps automatically.", videoOffset: "55.8% center" },
+    { title: "Progress Bar", video: "/images/progress%20bar.mp4", description: "Animated progress tracking with visual feedback that updates in real-time as users complete micro-tasks.", videoOffset: "55.5% center" },
+    { title: "Streak Tracking", video: "/images/streak.mp4", description: "Gamified streak system that motivates users to maintain daily consistency with visual streak counters.", videoOffset: "50% center" }
   ]
 };

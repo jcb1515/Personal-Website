@@ -1,123 +1,111 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Github, Linkedin, Mail, Phone } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { personalInfo } from "@/data/content";
+import { motion, useReducedMotion } from "framer-motion";
+import { Download, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import type { ReactElement } from "react";
+import { MobileNavigation } from "@/components/navigation/MobileNavigation";
+import { navLinks } from "@/components/navigation/config";
+import { personalInfo } from "@/data/content";
 
-const navLinks = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Education", href: "/education" },
-  { name: "Experience", href: "/experience" },
-  { name: "Projects", href: "/projects" },
-  { name: "Skills", href: "/skills" },
-  { name: "Activities", href: "/activities" },
-];
-
-export function NavBar() {
-  const [scrolled, setScrolled] = useState(false);
-
+export function NavBar(): ReactElement {
   const pathname = usePathname();
-
-  const [mounted, setMounted] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState<boolean>(true);
+  const lastScrollY = useRef<number>(0);
 
   useEffect(() => {
-    setMounted(true);
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+    const handleScroll = (): void => {
+      const currentScrollY = window.scrollY;
+      const delta = currentScrollY - lastScrollY.current;
+
+      setIsScrolled(currentScrollY > 24);
+      if (Math.abs(delta) > 6) {
+        setIsVisible(currentScrollY < 120 || delta < 0);
+        lastScrollY.current = currentScrollY;
+      }
     };
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  if (!mounted) return null;
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
 
   return (
-    <header
-      className={cn(
-        "fixed top-0 w-full z-40 transition-all duration-300 bg-background/90 backdrop-blur-md flex flex-col",
-        scrolled ? "border-b border-primary shadow-[0_4px_30px_rgba(204,0,0,0.1)]" : ""
-      )}
+    <motion.header
+      animate={{ y: isVisible || isOpen ? 0 : "-100%" }}
+      transition={
+        shouldReduceMotion
+          ? { duration: 0 }
+          : { duration: 0.24, ease: [0.22, 1, 0.36, 1] }
+      }
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors ${isScrolled || isOpen ? "border-[var(--line)] bg-black/95" : "border-transparent bg-black/45"} backdrop-blur-xl`}
     >
-      <div className={cn(
-        "max-w-7xl mx-auto px-6 w-full flex items-center justify-between transition-all duration-300",
-        scrolled ? "py-4" : "py-6"
-      )}>
-        <a href="/" className="font-heading text-2xl tracking-wider text-white hover:text-primary transition-colors">
+      <div className="page-shell flex h-[4.75rem] items-center justify-between">
+        <Link
+          href="/"
+          className="flex min-h-11 min-w-11 items-center font-heading text-2xl font-semibold text-white"
+          aria-label="JB - James Boutros home"
+        >
           JB
-        </a>
+        </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden items-center gap-4 xl:flex" aria-label="Primary navigation">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
               <Link
-                key={link.name}
+                key={link.href}
                 href={link.href}
-                className={cn(
-                  "text-sm font-medium transition-colors relative group flex items-center justify-center",
-                  isActive ? "text-white" : "text-foreground hover:text-white"
-                )}
-              >
-                {link.name}
-                {isActive ? (
-                  <span className="absolute -bottom-2 w-1.5 h-1.5 bg-primary" />
-                ) : (
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
-                )}
-              </Link>
-            );
-          })}
-        </nav>
-
-        <div className="hidden sm:flex items-center gap-4">
-          <a href={`mailto:${personalInfo.email}`} className="text-muted hover:text-primary transition-colors">
-            <Mail size={20} />
-            <span className="sr-only">Email</span>
-          </a>
-          <a href={`tel:${personalInfo.phone}`} className="text-muted hover:text-primary transition-colors">
-            <Phone size={20} />
-            <span className="sr-only">Phone</span>
-          </a>
-          <a href={`https://${personalInfo.linkedin}`} target="_blank" rel="noreferrer" className="text-muted hover:text-primary transition-colors">
-            <Linkedin size={20} />
-            <span className="sr-only">LinkedIn</span>
-          </a>
-          <a href={`https://${personalInfo.github}`} target="_blank" rel="noreferrer" className="text-muted hover:text-primary transition-colors">
-            <Github size={20} />
-            <span className="sr-only">GitHub</span>
-          </a>
-        </div>
-      </div>
-
-      {/* Mobile Scrollable Nav */}
-      <div className="md:hidden w-full px-6 pb-4 overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-        <nav className="flex items-center gap-6 min-w-max">
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href;
-            return (
-              <Link
-                key={link.name}
-                href={link.href}
-                className={cn(
-                  "text-[15px] font-medium transition-colors relative flex items-center justify-center pb-1",
-                  isActive ? "text-white" : "text-foreground hover:text-white"
-                )}
+                className={`relative flex min-h-11 items-center text-[0.72rem] font-semibold uppercase text-[var(--muted)] transition-colors hover:text-white ${isActive ? "text-white" : ""}`}
               >
                 {link.name}
                 {isActive && (
-                  <span className="absolute bottom-0 w-full h-[2px] bg-primary" />
+                  <motion.span
+                    layoutId="active-route"
+                    className="absolute inset-x-0 bottom-0 h-0.5 bg-[var(--signal-bright)]"
+                  />
                 )}
               </Link>
             );
           })}
         </nav>
+
+        <a
+          href={personalInfo.resumePath}
+          download={personalInfo.resumeFilename}
+          className="command hidden min-h-11 px-4 xl:flex"
+        >
+          Resume <Download size={16} />
+        </a>
+
+        <button
+          type="button"
+          className="flex min-h-11 min-w-11 items-center justify-center border border-[var(--line)] text-white xl:hidden"
+          aria-expanded={isOpen}
+          aria-controls="mobile-navigation"
+          aria-label={isOpen ? "Close navigation" : "Open navigation"}
+          onClick={() => setIsOpen((current) => !current)}
+        >
+          {isOpen ? <X size={21} /> : <Menu size={21} />}
+        </button>
       </div>
-    </header>
+
+      <MobileNavigation open={isOpen} reducedMotion={shouldReduceMotion ?? false} />
+    </motion.header>
   );
 }

@@ -1,240 +1,60 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useState } from "react";
+import type { ReactElement } from "react";
 import { Section } from "@/components/Section";
-import { projects, microloop } from "@/data/content";
-import Image from "next/image";
-import { FileText, Smartphone, Code, Paintbrush } from "lucide-react";
+import { FeaturedProject } from "@/components/projects/FeaturedProject";
+import { CodedFeatureGallery } from "@/components/projects/CodedFeatureGallery";
+import { ProjectCard } from "@/components/projects/ProjectCard";
+import { projects } from "@/data/content";
 
-export function Projects() {
-  const softwareProjects = projects.filter(p => p.type === "software");
-  const hardwareProjects = projects.filter(p => p.type === "hardware");
-
-  const ProjectCard = ({ project }: { project: (typeof projects)[number] }) => {
-    const [showSchematic, setShowSchematic] = useState(false);
-
-    return (
-      <motion.div
-        variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
-        className="group relative h-full flex flex-col bg-surface rounded-sm ring-1 ring-surface-border hover:ring-2 hover:ring-primary overflow-hidden transition-all duration-300"
-      >
-        <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500 z-0 pointer-events-none" />
-        <div className="absolute -inset-1 rounded-sm bg-gradient-to-r from-primary to-primary opacity-0 group-hover:opacity-20 blur-md transition-opacity duration-500 z-0 pointer-events-none" />
-        
-        <div className="relative z-10 flex flex-col h-full bg-surface">
-          <div className="relative w-full border-b-2 border-primary shadow-[0_0_30px_rgba(204,0,0,0.3)] overflow-hidden flex items-center justify-center aspect-video bg-[#0a0a0a]">
-             <div className="absolute inset-0 flex items-center justify-center text-primary font-heading tracking-widest bg-background z-0">
-               {project.type === 'hardware' ? (showSchematic ? 'SCHEMATIC IMAGE' : 'CIRCUIT IMAGE') : 'PROJECT SCREENSHOT'}
-             </div>
-             
-             <div className={`absolute inset-4 z-10 flex items-center justify-center transition-all duration-700 ease-in-out ${showSchematic ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 scale-100'}`}>
-               <Image src={project.image} alt={project.title} fill className={`${project.type === 'hardware' ? 'object-contain' : 'object-cover'} rounded-sm`} unoptimized onError={(e) => { e.currentTarget.style.display = 'none'; }} />
-             </div>
-
-             {project.schematicImage && (
-                <div className={`absolute inset-0 bg-white z-20 flex items-center justify-center p-4 transition-all duration-700 ease-in-out ${showSchematic ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-105 pointer-events-none'}`}>
-                  {project.schematicImage.endsWith('.pdf') ? (
-                    <iframe src={`${project.schematicImage}#toolbar=0&view=FitH`} className="relative w-full h-full z-30 pointer-events-auto border border-primary/20 rounded-sm shadow-2xl bg-white" title={project.title + " Schematic"} />
-                  ) : (
-                    <div className="absolute inset-4 z-30 flex items-center justify-center bg-[#0a0a0a] rounded-sm">
-                      <Image src={project.schematicImage} alt={project.title + " Schematic"} fill className="object-contain rounded-sm" unoptimized onError={(e) => { e.currentTarget.style.display = 'none'; }} />
-                    </div>
-                  )}
-                </div>
-             )}
-          </div>
-
-        <div className="p-6 flex flex-col flex-1">
-          <h3 className="text-2xl font-heading text-white group-hover:text-primary transition-colors mb-3">
-            {project.title}
-          </h3>
-          <p className="text-muted text-sm font-body flex-1 mb-6 leading-relaxed">
-            {project.description.includes("https://jabogpt.vercel.app") ? (
-              <>
-                {project.description.split("https://jabogpt.vercel.app")[0]}
-                <a 
-                  href="https://jabogpt.vercel.app" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="underline decoration-primary hover:text-white transition-colors"
-                >
-                  https://jabogpt.vercel.app
-                </a>
-                {project.description.split("https://jabogpt.vercel.app")[1]}
-              </>
-            ) : (
-              project.description
-            )}
-          </p>
-          <div className="mt-auto flex flex-col gap-4">
-            <ul className="flex flex-wrap gap-2 text-xs font-body text-surface-border">
-              {project.tech.map((tech: string) => (
-                <li key={tech} className="px-2 py-1 bg-surface-light text-primary border border-surface-border rounded-sm">
-                  {tech}
-                </li>
-              ))}
-            </ul>
-            {project.schematicImage && (
-              <button
-                onClick={() => setShowSchematic(!showSchematic)}
-                className="mt-2 text-center py-3 bg-surface border border-primary text-primary hover:bg-primary hover:text-white transition-colors duration-300 font-heading tracking-widest flex items-center justify-center gap-2 rounded-sm"
-              >
-                {showSchematic ? "VIEW CIRCUIT DIAGRAM" : "VIEW SCHEMATIC"}
-              </button>
-            )}
-            {project.codePath && (
-              <a
-                href={project.codePath}
-                download
-                className="mt-2 text-center py-3 bg-primary/10 border border-primary text-primary hover:bg-primary hover:text-white transition-colors duration-300 font-heading tracking-widest flex items-center justify-center gap-2 rounded-sm"
-              >
-                <FileText size={16} /> DOWNLOAD CODE ({project.codePath.split('.').pop()?.toUpperCase()})
-              </a>
-            )}
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
+export function Projects(): ReactElement {
+  const softwareProjects = projects.filter((project) => project.type === "software");
+  const hardwareProjects = projects.filter((project) => project.type === "hardware");
 
   return (
-    <Section id="projects" title="Projects">
-      
-      {/* ──────────── MICROLOOP SHOWCASE ──────────── */}
-      <div className="mb-16">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={{
-            hidden: { opacity: 0 },
-            visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
-          }}
-        >
-          {/* Header */}
-          <motion.div 
-            variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
-            className="mb-10"
-          >
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-14 h-14 rounded-sm bg-primary/10 border-2 border-primary flex items-center justify-center shadow-[0_0_25px_rgba(204,0,0,0.3)]">
-                <Smartphone size={28} className="text-primary" />
-              </div>
-              <div>
-                <h3 className="text-4xl md:text-5xl font-heading text-white">MICROLOOP</h3>
-                <p className="text-primary font-body text-sm tracking-widest">iOS APPLICATION — APPLE CO-OP</p>
-              </div>
-            </div>
-            <p className="text-muted font-body text-lg leading-relaxed max-w-4xl">
-              {microloop.description}
-            </p>
-            <div className="flex flex-wrap gap-2 mt-6">
-              {microloop.tech.map(tech => (
-                <span key={tech} className="px-4 py-2 bg-surface border border-surface-border text-primary font-body text-sm rounded-sm">
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Designed Features */}
-          <motion.div 
-            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-            className="mb-12"
-          >
-            <div className="flex items-center gap-3 mb-8">
-              <Paintbrush size={22} className="text-primary" />
-              <h4 className="text-2xl font-heading text-white tracking-wider">DESIGNED FEATURES</h4>
-              <div className="flex-1 h-px bg-surface-border ml-4" />
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {microloop.designedFeatures.map((feature, i) => (
-                <motion.div
-                  key={i}
-                  variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                  className="group relative bg-surface rounded-sm ring-1 ring-surface-border hover:ring-2 hover:ring-primary overflow-hidden transition-all duration-300"
-                >
-                  <div className="relative aspect-video w-full border-b-2 border-primary shadow-[0_0_20px_rgba(204,0,0,0.2)] bg-[#0a0a0a] overflow-hidden flex items-center justify-center">
-                    <Image
-                      src={feature.image}
-                      alt={feature.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      unoptimized
-                      onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                    />
-                  </div>
-                  <div className="p-5">
-                    <h5 className="text-lg font-heading text-white mb-2 group-hover:text-primary transition-colors">{feature.title}</h5>
-                    <p className="text-muted font-body text-xs leading-relaxed">{feature.description}</p>
-                  </div>
-                  <div className="absolute inset-0 ring-1 ring-inset ring-surface-border group-hover:ring-2 group-hover:ring-primary transition-all duration-300 z-20 pointer-events-none rounded-[inherit]" />
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Coded Features */}
-          <motion.div 
-            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-          >
-            <div className="flex items-center gap-3 mb-8">
-              <Code size={22} className="text-primary" />
-              <h4 className="text-2xl font-heading text-white tracking-wider">CODED FEATURES</h4>
-              <div className="flex-1 h-px bg-surface-border ml-4" />
-            </div>
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
-              {microloop.codedFeatures.map((feature, i) => (
-                <motion.div
-                  key={i}
-                  variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                  className={`group relative bg-surface rounded-sm ring-1 ring-surface-border hover:ring-2 hover:ring-primary overflow-hidden transition-all duration-300 ${i === microloop.codedFeatures.length - 1 && microloop.codedFeatures.length % 3 === 2 ? 'lg:col-start-2' : ''} ${i === microloop.codedFeatures.length - 1 && microloop.codedFeatures.length % 2 === 1 ? 'col-span-2 lg:col-span-1 max-w-sm mx-auto lg:max-w-none' : ''}`}
-                >
-                  <div className="relative aspect-[9/16] w-full border-b-2 border-primary shadow-[0_0_20px_rgba(204,0,0,0.2)] bg-black overflow-hidden">
-                    <video
-                      src={feature.video}
-                      className="w-full h-full object-cover"
-                      style={{ objectPosition: (feature as any).videoOffset || '60% center' }}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                    />
-                  </div>
-                  <div className="p-5">
-                    <h5 className="text-lg font-heading text-white mb-2 group-hover:text-primary transition-colors">{feature.title}</h5>
-                    <p className="text-muted font-body text-xs leading-relaxed">{feature.description}</p>
-                  </div>
-                  <div className="absolute inset-0 ring-1 ring-inset ring-surface-border group-hover:ring-2 group-hover:ring-primary transition-all duration-300 z-20 pointer-events-none rounded-[inherit]" />
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </motion.div>
-      </div>
-
-      {/* Divider */}
-      <div className="border-t border-surface-border my-12" />
-
-      {/* ──────────── SOFTWARE PROJECTS ──────────── */}
-      <div className="mb-12">
-        <h3 className="text-3xl font-heading text-white mb-8 border-b border-surface-border pb-4">Software Projects</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {softwareProjects.map((project, index) => <ProjectCard key={index} project={project} />)}
-        </div>
-      </div>
-
-      {/* ──────────── HARDWARE PROJECTS ──────────── */}
-      <div>
-        <h3 className="text-3xl font-heading text-white mb-8 border-b border-surface-border pb-4">Hardware &amp; Circuit Projects</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {hardwareProjects.map((project, index) => <ProjectCard key={index} project={project} />)}
-        </div>
-      </div>
-
+    <Section id="projects" eyebrow="Selected work / 04" title="Systems built to work">
+      <FeaturedProject />
+      <CodedFeatureGallery />
+      <ProjectGroup
+        index="03"
+        title="Software systems"
+        description="Production interfaces with real deployment paths and deliberate architecture."
+      >
+        {softwareProjects.map((project) => (
+          <ProjectCard key={project.title} project={project} />
+        ))}
+      </ProjectGroup>
+      <ProjectGroup
+        index="04"
+        title="Hardware documentation"
+        description="Embedded systems presented with their source code and complete circuit evidence."
+      >
+        {hardwareProjects.map((project) => (
+          <ProjectCard key={project.title} project={project} />
+        ))}
+      </ProjectGroup>
     </Section>
+  );
+}
+
+interface ProjectGroupProps {
+  index: string;
+  title: string;
+  description: string;
+  children: ReactElement[];
+}
+
+function ProjectGroup({ index, title, description, children }: ProjectGroupProps): ReactElement {
+  return (
+    <section className="mt-20">
+      <div className="mb-7 grid gap-4 border-y border-[var(--line)] py-5 md:grid-cols-[5rem_1fr_1fr] md:items-end">
+        <span className="technical-label">{index}</span>
+        <h2 className="text-3xl leading-none sm:text-4xl">{title}</h2>
+        <p className="max-w-xl text-sm leading-6 text-[var(--quiet)] md:justify-self-end">
+          {description}
+        </p>
+      </div>
+      <div className="grid gap-px bg-[var(--line)] md:grid-cols-2">{children}</div>
+    </section>
   );
 }

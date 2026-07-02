@@ -1,30 +1,39 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import type { ReactElement } from "react";
 import { Section } from "@/components/Section";
-import { Check } from "lucide-react";
 import { extracurriculars } from "@/data/content";
+import { createEntryTransition } from "@/lib/motion";
 
-export function Extracurriculars() {
+const outcomes = ["Team systems", "Technical pathway", "Consistency", "Community"] as const;
+
+export function Extracurriculars(): ReactElement {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
-    <Section id="extracurriculars" title="Extracurriculars & Certifications">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <Section
+      id="extracurriculars"
+      eyebrow="Beyond coursework / 06"
+      title="Leadership, discipline, and community"
+    >
+      <div className="border-t border-[var(--line)]">
         {extracurriculars.map((item, index) => (
-          <motion.div 
-            key={index}
-            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-            className="flex flex-col md:flex-row items-start gap-4 p-6 bg-surface rounded-sm ring-1 ring-surface-border hover:ring-2 hover:ring-primary hover:-translate-y-1 transition-all duration-300 shadow-sm"
+          <motion.article
+            key={item.title}
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={createEntryTransition(index * 0.06)}
+            className="content-row grid gap-5 border-b border-[var(--line)] py-8 md:grid-cols-[5rem_1fr_1.2fr_10rem] md:items-start"
           >
-            <div className="flex-shrink-0 w-8 h-8 mt-1 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20 text-primary">
-              <Check size={16} />
-            </div>
-            <div className="flex-1">
-              <h3 className="text-xl font-heading text-white mb-2">{item.title}</h3>
-              <p className="text-muted font-body leading-relaxed text-sm">
-                {item.description}
-              </p>
-            </div>
-          </motion.div>
+            <span className="technical-label">{String(index + 1).padStart(2, "0")}</span>
+            <h2 className="text-2xl leading-tight">{item.title}</h2>
+            <p className="text-sm leading-7 text-[var(--muted)]">{item.description}</p>
+            <span className="text-xs uppercase text-[var(--state)] md:text-right">
+              {outcomes[index]}
+            </span>
+          </motion.article>
         ))}
       </div>
     </Section>
