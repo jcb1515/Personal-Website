@@ -11,17 +11,17 @@ const principles = [
   {
     index: "01",
     title: "Systems thinking",
-    text: "I like work where software meets a physical system: sensors, signals, interfaces, and decisions.",
+    text: "I am drawn to problems where software meets the physical world through sensors, signals, interfaces, and decisions.",
   },
   {
     index: "02",
     title: "Disciplined practice",
-    text: "Whether I am lifting, studying, or building, I improve through consistency and measured progress.",
+    text: "Whether I am training, studying, or building, I improve through consistent effort and measurable progress.",
   },
   {
     index: "03",
     title: "Community",
-    text: "My Coptic Christian faith, family, and service keep ambition connected to responsibility.",
+    text: "My Coptic Christian faith, family, and service keep my ambition grounded in responsibility.",
   },
 ] as const;
 
@@ -34,15 +34,15 @@ const lifestyleImages = [
 const outsideDetails = [
   {
     title: "Faith & community",
-    text: "My Coptic Christian faith keeps ambition connected to service, family, and responsibility to the people around me.",
+    text: "My Coptic Christian faith connects ambition with service, family, and responsibility to the people around me.",
   },
   {
     title: "Training",
-    text: "Six to eight hours of weekly training gives me a measurable practice in patience, consistency, and incremental progress.",
+    text: "Six to eight hours of weekly training turns patience, consistency, and incremental progress into a practical discipline.",
   },
   {
     title: "Sport & curiosity",
-    text: "I follow FC Barcelona and the Toronto Raptors, travel when I can, and keep exploring practical uses for emerging AI tools.",
+    text: "I follow FC Barcelona and the Toronto Raptors, travel when possible, and explore practical uses for emerging AI tools.",
   },
 ] as const;
 
@@ -50,7 +50,7 @@ export function About(): ReactElement {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <Section id="about" eyebrow="Profile / 01" title="Built through curiosity and consistency">
+    <Section id="about" eyebrow="Profile / 01" title="Curiosity, backed by consistency">
       <div className="grid gap-10 border-y border-[var(--line)] py-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 lg:py-16">
         <motion.div
           initial={shouldReduceMotion ? false : { opacity: 0, x: -24 }}
@@ -113,14 +113,14 @@ export function About(): ReactElement {
         <div className="grid items-start gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
           <div className="flex flex-col gap-8">
             <div>
-              <div className="technical-label mb-4">Outside the lab</div>
+              <div className="technical-label mb-4">Beyond engineering</div>
               <h2 className="max-w-xl text-4xl leading-tight sm:text-5xl">
-                Faith, training, sport, and travel keep the work grounded.
+                Faith, training, sport, and travel keep me grounded.
               </h2>
             </div>
             <p className="max-w-xl text-sm leading-7 text-[var(--muted)]">
               I train six to eight hours each week, follow FC Barcelona and the Toronto
-              Raptors, stay active in my church community, and look for useful applications
+              Raptors, stay active in my church community, and explore useful applications
               of AI in my spare time.
             </p>
           </div>

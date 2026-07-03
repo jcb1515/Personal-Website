@@ -7,7 +7,7 @@ export function Footer(): ReactElement {
     <footer className="border-t border-[var(--line)] bg-black">
       <div className="page-shell grid gap-8 py-10 md:grid-cols-[1fr_auto] md:items-end">
         <div>
-          <div className="technical-label mb-3">End of transmission</div>
+          <div className="technical-label mb-3">Portfolio complete</div>
           <p className="text-sm text-[var(--muted)]">
             © {new Date().getFullYear()} {personalInfo.name}. Built in Burlington, Ontario.
           </p>

@@ -6,7 +6,7 @@ import { Section } from "@/components/Section";
 import { extracurriculars } from "@/data/content";
 import { createEntryTransition } from "@/lib/motion";
 
-const outcomes = ["Team systems", "Technical pathway", "Consistency", "Community"] as const;
+const outcomes = ["Collaborative engineering", "Applied technology", "Long-term discipline", "Community service"] as const;
 
 export function Extracurriculars(): ReactElement {
   const shouldReduceMotion = useReducedMotion();
@@ -15,7 +15,7 @@ export function Extracurriculars(): ReactElement {
     <Section
       id="extracurriculars"
       eyebrow="Beyond coursework / 06"
-      title="Leadership, discipline, and community"
+      title="Leadership beyond the classroom"
     >
       <div className="border-t border-[var(--line)]">
         {extracurriculars.map((item, index) => (

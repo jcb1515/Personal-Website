@@ -27,7 +27,7 @@ const bodyFont = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: "James Boutros | Electrical Engineering Portfolio",
   description:
-    "Electrical engineering, embedded systems, and software projects by James Boutros.",
+    "Explore James Boutros's work across electrical engineering, embedded systems, and software development.",
   icons: {
     icon: "/jb-favicon.svg",
     shortcut: "/jb-favicon.svg",

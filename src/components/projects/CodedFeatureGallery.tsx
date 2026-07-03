@@ -5,13 +5,13 @@ import { ThemedVideoPlayer } from "@/components/projects/ThemedVideoPlayer";
 
 export function CodedFeatureGallery(): ReactElement {
   return (
-    <section className="mt-20">
+    <section className="mt-12">
       <div className="mb-7 grid gap-4 border-y border-[var(--line)] py-5 md:grid-cols-[5rem_1fr_1fr] md:items-end">
-        <span className="technical-label">02</span>
-        <h2 className="text-3xl leading-none sm:text-4xl">Coded product flows</h2>
+        <span className="technical-label">01.B / MicroLoop</span>
+        <h2 className="text-3xl leading-none sm:text-4xl">Working product flows</h2>
         <p className="max-w-xl text-sm leading-6 text-[var(--quiet)] md:justify-self-end">
-          Five working interactions from the shipped SwiftUI prototype. Play any recording
-          to inspect the implemented behavior.
+          Five implemented interactions from the SwiftUI prototype. Play a recording to
+          see each flow in action.
         </p>
       </div>
       <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-6">

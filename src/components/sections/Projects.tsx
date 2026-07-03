@@ -12,22 +12,34 @@ export function Projects(): ReactElement {
   const hardwareProjects = projects.filter((project) => project.type === "hardware");
 
   return (
-    <Section id="projects" eyebrow="Selected work / 04" title="Systems built to work">
-      <FeaturedProject />
-      <CodedFeatureGallery />
+    <Section id="projects" eyebrow="Selected work / 04" title="Projects built to solve real problems">
+      <section className="microloop-case-study">
+        <div className="microloop-case-study-header">
+          <div>
+            <span className="technical-label">Project 01 / Complete case study</span>
+            <h2>MicroLoop</h2>
+          </div>
+          <p>
+            The product design and coded interactions below are two parts of the same
+            SwiftUI application, shown together as one complete project.
+          </p>
+        </div>
+        <FeaturedProject />
+        <CodedFeatureGallery />
+      </section>
       <ProjectGroup
-        index="03"
-        title="Software systems"
-        description="Production interfaces with real deployment paths and deliberate architecture."
+        index="02"
+        title="Software projects"
+        description="Deployed interfaces built around clear architecture, secure integrations, and practical user needs."
       >
         {softwareProjects.map((project) => (
           <ProjectCard key={project.title} project={project} />
         ))}
       </ProjectGroup>
       <ProjectGroup
-        index="04"
-        title="Hardware documentation"
-        description="Embedded systems presented with their source code and complete circuit evidence."
+        index="03"
+        title="Hardware projects"
+        description="Embedded systems presented with source code, working circuit designs, and complete schematics."
       >
         {hardwareProjects.map((project) => (
           <ProjectCard key={project.title} project={project} />

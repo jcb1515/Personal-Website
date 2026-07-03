@@ -19,13 +19,13 @@ export function Contact(): ReactElement {
   };
 
   return (
-    <Section id="contact" eyebrow="Open channel / 07" title="Let's build something">
+    <Section id="contact" eyebrow="Contact / 07" title="Start a conversation">
       <div className="grid gap-12 border-t border-[var(--line)] pt-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
         <div className="flex flex-col justify-between gap-10">
           <div>
             <p className="max-w-lg text-base leading-8 text-[var(--muted)]">
-              Have a role, project, or technical problem worth discussing? Send the details
-              and I will respond within 24 hours.
+              Have a role, project, or technical challenge in mind? Share the details, and
+              I will respond within 24 hours.
             </p>
           </div>
           <div className="flex gap-2">
@@ -43,7 +43,7 @@ export function Contact(): ReactElement {
 
         <form className="grid gap-6" onSubmit={handleSubmit}>
           <Field label="Name" name="name" type="text" autoComplete="name" />
-          <Field label="Email" name="email" type="email" autoComplete="email" />
+          <Field label="Email address" name="email" type="email" autoComplete="email" />
           <label className="grid gap-2 text-xs uppercase text-[var(--muted)]">
             Message
             <textarea

@@ -59,8 +59,8 @@ export function HeroSceneLayer(): ReactElement {
     >
       {isInteractive ? <HeroScene /> : <SignalFallback />}
       <div className={`scene-boot-label ${isBooting ? "scene-boot-label-visible" : ""}`} aria-hidden="true">
-        <span>Signal field</span>
-        <strong>Initialising 3D environment</strong>
+        <span>Interactive signal field</span>
+        <strong>Loading 3D environment</strong>
       </div>
     </div>
   );

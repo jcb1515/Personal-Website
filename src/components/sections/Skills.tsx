@@ -10,7 +10,7 @@ export function Skills(): ReactElement {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <Section id="skills" eyebrow="Capability map / 05" title="Tools tied to evidence">
+    <Section id="skills" eyebrow="Skills / 05" title="Tools proven through projects">
       <div className="border-t border-[var(--line)]">
         {skills.map((category, categoryIndex) => (
           <motion.section

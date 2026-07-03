@@ -10,7 +10,7 @@ export function Experience(): ReactElement {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <Section id="experience" eyebrow="Field log / 03" title="Experience in real systems">
+    <Section id="experience" eyebrow="Experience / 03" title="Learning through real responsibility">
       <div className="border-t border-[var(--line)]">
         {experience.map((item, index) => (
           <motion.article

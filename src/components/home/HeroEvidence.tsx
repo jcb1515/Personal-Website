@@ -29,13 +29,13 @@ export function HeroEvidence(): ReactElement {
     <div className="relative z-10 border-t border-[var(--line)] bg-black/88 backdrop-blur-md">
       <div className="page-shell py-6">
         <div className="mb-5 flex items-center gap-4">
-          <span className="technical-label">01 / Selected proof</span>
+          <span className="technical-label">01 / Selected work</span>
           <span className="rule flex-1" />
           <Link
             href="/projects"
             className="hidden items-center gap-2 text-xs uppercase text-[var(--muted)] hover:text-white sm:flex"
           >
-            View all projects <ArrowRight size={15} />
+            Explore all projects <ArrowRight size={15} />
           </Link>
         </div>
         <div className="grid gap-3 md:grid-cols-3">

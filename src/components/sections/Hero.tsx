@@ -66,7 +66,7 @@ export function Hero(): ReactElement {
         >
           <span className="h-0.5 w-9 bg-[var(--signal-bright)]" />
           <span className="technical-label text-[var(--muted)]">
-            Builder · problem solver · engineer
+            Engineer · builder · problem solver
           </span>
         </motion.div>
 
@@ -103,7 +103,7 @@ export function Hero(): ReactElement {
           className="mt-10 flex flex-col gap-3 sm:flex-row"
         >
           <Link href="/projects" className="command command-primary min-w-48">
-            Explore work <ArrowRight size={17} />
+            View projects <ArrowRight size={17} />
           </Link>
           <a
             href={personalInfo.resumePath}
@@ -113,7 +113,7 @@ export function Hero(): ReactElement {
             Download resume <Download size={17} />
           </a>
           <Link href="/contact" className="command min-w-48">
-            Contact <Mail size={17} />
+            Get in touch <Mail size={17} />
           </Link>
         </motion.div>
 

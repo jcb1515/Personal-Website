@@ -58,12 +58,12 @@ export function SiteIntro(): ReactElement | null {
           <IntroScene reducedMotion={reducedMotion} />
           <div className="intro-interface" aria-live="polite">
             <div className="intro-lockup">
-              <span>JB / Signal established</span>
+              <span>JB / Portfolio online</span>
               <strong>James Boutros</strong>
               <p>Electrical engineering · embedded systems · software</p>
             </div>
             <div className="intro-status">
-              <span>Initialising portfolio environment</span>
+              <span>Preparing the portfolio</span>
               <div className="intro-progress">
                 <motion.span
                   initial={{ scaleX: 0 }}

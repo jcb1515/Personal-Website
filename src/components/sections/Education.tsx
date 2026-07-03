@@ -13,7 +13,7 @@ export function Education(): ReactElement {
   const [expandedInstitution, setExpandedInstitution] = useState<string | null>(null);
 
   return (
-    <Section id="education" eyebrow="Academic path / 02" title="Learning with intent">
+    <Section id="education" eyebrow="Education / 02" title="Building a rigorous foundation">
       <div className="border-t border-[var(--line)]">
         {education.map((item, index) => {
           const isExpandable = item.institution.includes("Assumption");
@@ -50,7 +50,7 @@ export function Education(): ReactElement {
                         setExpandedInstitution(isExpanded ? null : item.institution)
                       }
                     >
-                      {isExpanded ? "Hide details" : "View details"}
+                      {isExpanded ? "Hide school details" : "View school details"}
                       <motion.span animate={{ rotate: isExpanded ? 180 : 0 }}>
                         <ChevronDown size={16} />
                       </motion.span>
@@ -71,9 +71,9 @@ export function Education(): ReactElement {
                   >
                     <div className="mt-8 grid gap-6 border-l border-[var(--signal)] pl-6 text-sm leading-7 text-[var(--muted)] md:ml-20 md:grid-cols-2">
                       <p>
-                        Maintained a 98% Grade 12 average and a 4.0 unweighted GPA,
-                        completing advanced coursework across mathematics, physics,
-                        chemistry, and English.
+                        Maintained a 98% Grade 12 average and a 4.0 unweighted GPA while
+                        completing advanced coursework in mathematics, physics, chemistry,
+                        and English.
                       </p>
                       <p>
                         Participated in VEX Robotics, DECA, Model UN, Senior Reach, Chess
@@ -91,8 +91,8 @@ export function Education(): ReactElement {
 
       <div className="mt-16 grid gap-8 lg:grid-cols-[0.65fr_1.35fr]">
         <div>
-          <div className="technical-label mb-4">Recognition</div>
-          <h2 className="text-4xl leading-tight sm:text-5xl">Measured academic progress</h2>
+          <div className="technical-label mb-4">Academic recognition</div>
+          <h2 className="text-4xl leading-tight sm:text-5xl">Results earned over time</h2>
         </div>
         <ol className="divide-y divide-[var(--line)] border-y border-[var(--line)]">
           {accomplishments.map((item, index) => (
