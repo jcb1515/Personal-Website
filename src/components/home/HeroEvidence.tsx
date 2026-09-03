@@ -14,6 +14,11 @@ const evidenceImages = [
     alt: "Arduino photoresistor circuit",
     label: "Embedded systems",
   },
+  {
+    src: "/images/astrono-jarvis.png",
+    alt: "Astrono Jarvis astronomical intelligence interface",
+    label: "Astrono Jarvis",
+  },
 ] as const;
 
 export function HeroEvidence(): ReactElement {
@@ -30,7 +35,7 @@ export function HeroEvidence(): ReactElement {
             Explore all projects <ArrowRight size={15} />
           </Link>
         </div>
-        <div className="grid gap-3 md:grid-cols-2">
+        <div className="grid gap-3 md:grid-cols-3">
           {evidenceImages.map((image) => (
             <Link
               key={image.label}

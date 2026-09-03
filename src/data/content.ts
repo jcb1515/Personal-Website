@@ -99,7 +99,7 @@ export const projects = [
     title: "Astrono Jarvis",
     tech: ["Python", "React", "Three.js", "Ollama", "Tauri", "MCP"],
     description: "A voice-first, locally operated AI command console built on OpenJarvis. Astrono Jarvis combines local Qwen inference and Whisper transcription with wake-word activation, streaming speech, an audio-reactive 3D astronomy interface, and confirmation-gated tools for safe desktop automation.",
-    image: "https://raw.githubusercontent.com/jcb1515/Jarvis/main/design/jarvis-final-desktop.png",
+    image: "/images/astrono-jarvis.png",
     projectUrl: "https://github.com/jcb1515/Jarvis"
   },
   {
