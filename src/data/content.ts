@@ -36,6 +36,30 @@ export const accomplishments = [
 
 export const experience = [
   {
+    role: "Co-Founder & CTO",
+    company: "Phydata",
+    period: "June 2026 - Present",
+    description: "Co-founded a data-infrastructure startup focused on collection, labeling, and dataset-management tools for physical AI. Created the MVP blueprint, designed and built the company website, shaped the product roadmap, and developed tools supporting the company's growth.",
+    highlights: [
+      "Created the MVP blueprint for a physical-AI data platform, defining the core collection, labeling, and dataset-management workflows.",
+      "Designed and built the company website with React, Python, and Supabase, and authored the YC application working document covering the market, competitive landscape, and business model.",
+      "Proposed a roadmap for training proprietary foundation models on collected robot data and built an automated social-media agent for company marketing.",
+    ],
+    image: "/images/exp-phydata.jpg"
+  },
+  {
+    role: "Independent Machine Learning Researcher",
+    company: "Collaborative Research Team",
+    period: "June 2026 - Present",
+    description: "Researching whether SHAP-based explanation drift can improve early detection of individual model errors under real-world distribution shifts across multiple machine-learning architectures and datasets.",
+    highlights: [
+      "Investigating SHAP-based explanation drift as an early signal of individual model errors under real-world distribution shifts.",
+      "Evaluating Logistic Regression, XGBoost, and TabPFN using AUROC, AUPRC, and calibration metrics.",
+      "Completed studies on hospital-readmission and U.S. Census housing datasets, finding that the effect is architecture-dependent rather than universal; the work is progressing toward publication.",
+    ],
+    image: "/images/exp-research.jpg"
+  },
+  {
     role: "App Developer",
     company: "Career Education Council / Apple (Co-op)",
     period: "June 2025 - July 2025",
@@ -60,30 +84,6 @@ export const experience = [
     ],
     image: "/images/exp-tutoring.jpg"
   },
-  {
-    role: "Pharmacy Assistant",
-    company: "East Waterdown Pharmacy",
-    period: "July 2023 - September 2023",
-    description: "Supported daily operations in a high-volume retail pharmacy. Audited inventory, managed stock rotation, and assisted pharmacists with accurate medication preparation and packaging. Handled sensitive customer questions with empathy while following provincial health regulations and protecting patient confidentiality and data.",
-    highlights: [
-      "Maintained inventory and tracked medication expiration dates for safety and regulatory compliance.",
-      "Assisted pharmacists with prescription preparation, order fulfillment, and counter organization.",
-      "Handled sensitive patient interactions with professionalism, empathy, and strict confidentiality.",
-    ],
-    image: "/images/exp-pharmacy.jpg"
-  },
-  {
-    role: "Camp Counsellor",
-    company: "ARSM",
-    period: "July 2022 - September 2022",
-    description: "Led daily schedules and developmental activities for groups of up to 20 children ages 6-12. Planned sports, arts, and educational sessions, modelled positive behaviour, and used empathetic communication and conflict resolution to maintain an inclusive and safe environment.",
-    highlights: [
-      "Supervised children across varied ages and developmental levels while enforcing safety protocols.",
-      "Led structured group activities and responded promptly to incidents.",
-      "Modelled the program's values through consistent communication and conflict resolution.",
-    ],
-    image: "/images/exp-camp.jpg"
-  }
 ];
 
 export const projects = [
@@ -96,11 +96,11 @@ export const projects = [
   },
   {
     type: "software",
-    title: "JaboGPT",
-    tech: ["Next.js", "React", "Gemini 2.5 Flash API", "Vercel"],
-    description: "An AI chat application powered by Google Gemini 2.5 Flash. JaboGPT supports file and image uploads with AI analysis, a collapsible and searchable chat sidebar, chat pinning and renaming, and secure server-side API key handling. Live at: https://jabogpt.vercel.app",
-    image: "/images/jabogpt%20picture.jpeg",
-    codePath: "/code/JaboGPT_AetherApp.txt"
+    title: "Astrono Jarvis",
+    tech: ["Python", "React", "Three.js", "Ollama", "Tauri", "MCP"],
+    description: "A voice-first, locally operated AI command console built on OpenJarvis. Astrono Jarvis combines local Qwen inference and Whisper transcription with wake-word activation, streaming speech, an audio-reactive 3D astronomy interface, and confirmation-gated tools for safe desktop automation.",
+    image: "https://raw.githubusercontent.com/jcb1515/Jarvis/main/design/jarvis-final-desktop.png",
+    projectUrl: "https://github.com/jcb1515/Jarvis"
   },
   {
     type: "hardware",
@@ -142,6 +142,53 @@ export const projects = [
 
 export type Project = (typeof projects)[number];
 
+export interface OtherProject {
+  title: string;
+  label: string;
+  tech: string[];
+  description: string;
+  highlights?: string[];
+  projectUrl?: string;
+}
+
+export const otherProjects: OtherProject[] = [
+  {
+    title: "Morning Research Agent",
+    label: "Featured agentic system",
+    tech: ["PowerShell", "Gmail API", "Google Calendar", "Obsidian"],
+    description: "A daily agentic research-and-action system that synthesizes academic deadlines, AI and hardware news, co-op signals, and personal priorities into one focused morning brief.",
+    highlights: [
+      "Orchestrates a validator-first pipeline across research, source auditing, brief generation, calendar updates, and Obsidian synchronization.",
+      "Produces a Gmail-ready briefing and duplicate-safe Google Calendar updates from the same verified research run.",
+      "Uses 84 supporting artifacts and anti-hallucination safeguards to keep every output traceable and reliable.",
+    ],
+  },
+  {
+    title: "JaboGPT",
+    label: "AI application",
+    tech: ["Next.js", "React", "Gemini 2.5 Flash", "Vercel"],
+    description: "An AI chat application with file and image analysis, searchable conversations, chat pinning and renaming, and secure server-side API-key handling.",
+    projectUrl: "https://jabogpt.vercel.app",
+  },
+  {
+    title: "OpenProcessing Portfolio",
+    label: "Creative coding",
+    tech: ["p5.js", "JavaScript", "Creative Coding", "Interactive Design"],
+    description: "A collection of interactive sketches and visual experiments exploring computational thinking, animation, user input, and algorithmic art in the browser.",
+  },
+  {
+    title: "ESP32 Flight & Security Simulations",
+    label: "Embedded systems / Wokwi",
+    tech: ["ESP32", "Arduino C++", "Wokwi", "State Machines", "Serial Protocols"],
+    description: "Two ESP32 systems developed and tested in Wokwi: a distributed spacecraft flight-control simulator and an interactive vault escape-room console.",
+    highlights: [
+      "Coordinated four microcontrollers through a complete mission-state machine and serial protocols for telemetry and commands.",
+      "Added flight-safety logic that blocks arming when battery levels are low or the system is overheating.",
+      "Built a multi-stage vault challenge using proximity, light, motion, and PIN inputs to control the unlock sequence.",
+    ],
+  },
+];
+
 export const skills = [
   {
     category: "Programming Languages",
@@ -150,17 +197,17 @@ export const skills = [
       { name: "Python", description: "Used for scripting, automation, rapid prototypes, coursework physics simulations, mathematical problem-solving, and data processing for peer-tutoring materials." },
       { name: "Swift", description: "My primary language during the Apple co-op. I built the complete MicroLoop iOS app with Swift and SwiftUI, including complex components, state management, and screens guided by Apple's Human Interface Guidelines." },
       { name: "C++", description: "The core language behind all four TinkerCAD systems: Fire Alarm, Two-Door Lock, Traffic Light, and Photoresistor. I wrote interrupt-driven control loops, object-oriented sensor abstractions, and real-time Arduino Uno I/O." },
-      { name: "HTML", description: "The semantic foundation of JaboGPT and this portfolio, supporting search-friendly pages, accessible navigation, and clear component hierarchies across Next.js applications." },
-      { name: "CSS", description: "Used throughout this portfolio and JaboGPT through Tailwind utilities, custom motion, glass effects, responsive breakpoints, and a consistent red, black, and white visual system." },
-      { name: "JavaScript", description: "Powers my web projects, including JaboGPT's Gemini 2.5 Flash integration, live chat state, dynamic rendering, and this portfolio's Framer Motion interactions." }
+      { name: "HTML", description: "The semantic foundation of this portfolio, supporting search-friendly pages, accessible navigation, and clear component hierarchies across Next.js applications." },
+      { name: "CSS", description: "Used throughout this portfolio through Tailwind utilities, custom motion, glass effects, responsive breakpoints, and a consistent red, black, and white visual system." },
+      { name: "JavaScript", description: "Powers my web projects through dynamic rendering and this portfolio's Framer Motion interactions." }
     ]
   },
   {
     category: "Frameworks & Libraries",
     summary: "Frameworks and libraries I have used in deployed projects to build reliable interfaces and product interactions.",
     items: [
-      { name: "React", description: "The core UI library for JaboGPT and this portfolio. I built reusable component systems, managed complex state with hooks, and added optimistic updates to real-time chat interactions." },
-      { name: "Next.js", description: "Powers JaboGPT's secure server-side Gemini routes and this portfolio's App Router, file-based routes, page transitions, and optimized static generation." },
+      { name: "React", description: "The core UI library for this portfolio. I built reusable component systems, managed complex state with hooks, and added responsive interactions." },
+      { name: "Next.js", description: "Powers this portfolio's App Router, file-based routes, page transitions, and optimized static generation." },
       { name: "SwiftUI", description: "Used throughout MicroLoop, from its dashboard and goal-creation flows to the timer, streak tracking, and reflection survey. Its declarative model supported fast, precise interface iteration." },
       { name: "Framer Motion", description: "Controls this portfolio's scroll reveals, page transitions, staggered entrances, hover responses, card highlights, and navigation motion." },
       { name: "p5.js", description: "Used in coursework for creative coding and interactive visualizations that apply computational thinking and algorithmic art in the browser." }
@@ -171,8 +218,8 @@ export const skills = [
     summary: "Tools I use to design, build, test, version, and deploy software and embedded projects.",
     items: [
       { name: "Git", description: "Version control for every project I build, including clean histories, feature branches, and collaborative workflows during my Apple co-op and personal work." },
-      { name: "GitHub", description: "Hosts my open-source and personal repositories and supports reviews, issue tracking, and documentation for JaboGPT, this portfolio, and my TinkerCAD code." },
-      { name: "Vercel", description: "Deploys JaboGPT and this portfolio through automatic GitHub builds, secure environment variables, and custom domain management." },
+      { name: "GitHub", description: "Hosts my open-source and personal repositories and supports reviews, issue tracking, and documentation for this portfolio and my TinkerCAD code." },
+      { name: "Vercel", description: "Deploys this portfolio through automatic GitHub builds, secure environment variables, and custom domain management." },
       { name: "Xcode", description: "My primary MicroLoop IDE during the Apple co-op. I used Interface Builder, SwiftUI previews, debugging, Instruments profiling, and XCTest unit testing." },
       { name: "TinkerCAD", description: "The simulation environment for all four hardware projects. I designed and tested Arduino circuits with sensors, actuators, LCDs, and keypads before writing their embedded C++ controls." }
     ]
@@ -181,7 +228,7 @@ export const skills = [
     category: "Certifications",
     summary: "Credentials supporting my technical development, workplace readiness, and responsibility for safety.",
     items: [
-      { name: "First Aid and CPR Certified", description: "Completed first aid and CPR training for emergency response. The certification supported my ARSM camp counsellor role, where I was responsible for up to 20 children." },
+      { name: "First Aid and CPR Certified", description: "Completed first aid and CPR training for emergency response and safe workplace practices." },
       { name: "ICT SHSM Certifications", description: "Earned through Assumption CSS's Information and Communications Technology Specialist High Skills Major. The certifications covered technology infrastructure, coding fundamentals, and digital systems." }
     ]
   }

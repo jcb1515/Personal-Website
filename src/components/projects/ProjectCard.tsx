@@ -13,6 +13,7 @@ interface ProjectCardProps {
 export function ProjectCard({ project }: ProjectCardProps): ReactElement {
   const hasSchematic = "schematicImage" in project;
   const hasCode = "codePath" in project;
+  const hasProjectUrl = "projectUrl" in project;
 
   return (
     <InteractiveSurface className="flex h-full flex-col bg-[var(--surface)] will-change-transform">
@@ -25,7 +26,7 @@ export function ProjectCard({ project }: ProjectCardProps): ReactElement {
       <div className="flex flex-1 flex-col p-6 sm:p-8">
         <h3 className="text-3xl leading-tight">{project.title}</h3>
         <p className="mt-5 flex-1 text-sm leading-7 text-[var(--muted)]">
-          {project.description.replace("Live at: https://jabogpt.vercel.app", "")}
+          {project.description}
         </p>
         <ul className="mt-6 flex flex-wrap gap-2" aria-label="Technologies">
           {project.tech.map((technology) => (
@@ -35,9 +36,9 @@ export function ProjectCard({ project }: ProjectCardProps): ReactElement {
           ))}
         </ul>
         <div className="mt-7 flex flex-wrap gap-3">
-          {project.title === "JaboGPT" && (
-            <a href="https://jabogpt.vercel.app" target="_blank" rel="noreferrer" className="command">
-              Live app <ArrowUpRight size={16} />
+          {hasProjectUrl && (
+            <a href={project.projectUrl} target="_blank" rel="noreferrer" className="command">
+              View project <ArrowUpRight size={16} />
             </a>
           )}
           {hasCode && (
